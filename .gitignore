@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.local/
+.agents/
+.codex/
+skills-lock.json
+.impeccable/
+!.impeccable/design.json
+playwright-report/
+test-results/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
