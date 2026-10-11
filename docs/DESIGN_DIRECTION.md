@@ -1,6 +1,6 @@
 # Approved presentation direction
 
-The owner approved three image references and explicitly delegated remaining design decisions and immediate implementation. No new concept-selection round is needed. This is an Experience/Read presentation, with English explanatory copy and original Thai student names.
+The owner approved three image references and explicitly delegated remaining design decisions and immediate implementation. No new concept-selection round is needed. This is an Experience/Read presentation, with Thai-first bilingual explanatory copy and the owner's exact Thai/English student names and IDs.
 
 The cover follows the first reference's asymmetric identity-left / monument-right composition. A quiet university masthead and pill-shaped chapter rail remain consistent. The overview uses a NAS-centered technical stage and three distinctly colored chapter entries. IDEA feature and demonstration scenes use the third reference's editorial title, feature groups and media staging, with no imitation dashboard.
 

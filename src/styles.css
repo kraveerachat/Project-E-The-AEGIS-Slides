@@ -142,6 +142,42 @@ button svg { flex-shrink: 0; }
 .utility-controls { display: flex; align-items: center; gap: 8px; }
 .utility-controls button { border: 0; width: 45px; height: 45px; background: #fffaf570; border-radius: 50%; color: #686080; display: grid; place-items: center; }
 .utility-controls button:hover { background: #e8dff7; color: #5729bd; }
+.language-switch { display: inline-flex; align-items: center; gap: 2px; padding: 4px; margin-right: 7px; border: 1px solid #cfc2e7; border-radius: 999px; background: #fffaf5e8; box-shadow: 0 5px 17px #42337312; white-space: nowrap; }
+.utility-controls .language-switch button { width: 43px; height: 38px; border-radius: 999px; background: transparent; color: #665a80; font: 700 14px 'Manrope Variable', sans-serif; letter-spacing: .02em; }
+.utility-controls .language-switch button.active { background: linear-gradient(115deg,#9b49ea,#4b31e7); color: #fff; box-shadow: 0 4px 12px #6940ce42; }
+.utility-controls .language-switch > span { color: #aa9abf; font-size: 12px; }
+.utility-controls .language-switch button:focus-visible { outline: 3px solid #17182f; outline-offset: 3px; }
+.student-members > div { display: grid; gap: 5px; width: max-content; max-width: 100%; }
+.member-row { display: grid; grid-template-columns: 115px minmax(0,1fr); align-items: baseline; gap: 11px; line-height: 1.4; }
+.member-row b { font-family: 'Manrope Variable', sans-serif; font-size: .78em; font-weight: 700; letter-spacing: .04em; color: #6655a4; }
+.student-members { margin-top: 25px; }
+.ending-members { display: grid; gap: 3px; }
+html[lang='th'] .scene h1, html[lang='th'] .scene h2, html[lang='th'] .scene h3, html[lang='th'] .scene p, html[lang='th'] .scene button, html[lang='th'] .presentation-dialog { font-family: 'Noto Sans Thai', 'Manrope Variable', sans-serif; letter-spacing: normal; }
+html[lang='th'] .scene h1, html[lang='th'] .scene h2 { line-height: 1.2; }
+html[lang='th'] .scene p { line-height: 1.5; }
+html[lang='th'] .wordmark > span { font-family: 'Manrope Variable', sans-serif; letter-spacing: -.05em; }
+html[lang='th'] .node-title, html[lang='th'] .node-subtitle, html[lang='th'] .edge-label { font-family: 'Noto Sans Thai', sans-serif; }
+html[lang='th'] .node-title { font-size: 19px; }
+html[lang='th'] .node-subtitle { font-size: 14px; }
+html[lang='th'] .edge-label { font-size: 13px; }
+.presentation-mode .student-members { position: absolute; left: 400px; top: 526px; width: 535px; margin: 0; }
+.presentation-mode .student-members > div { font-size: 18px; gap: 2px; }
+.presentation-mode .student-members .micro-label { font-size: 10px; }
+html[lang='th'] .masthead-label, html[lang='th'] .cover-side-note, html[lang='th'] .micro-label, html[lang='th'] .presentation-label { letter-spacing: .08em; }
+html[lang='th'] .presentation-mode .security-heading { margin-bottom: 15px; }
+html[lang='th'] .presentation-mode .security-narrative { padding-top: 5px; }
+html[lang='th'] .presentation-mode .security-narrative > p { font-size: 21px; line-height: 1.3; margin-top: 10px; }
+html[lang='th'] .presentation-mode .security-steps { margin: 14px 0; }
+html[lang='th'] .presentation-mode .security-steps > div { padding: 9px 0; }
+html[lang='th'] .presentation-mode .security-narrative .evidence-panel { padding: 14px 18px; }
+html[lang='th'] .presentation-mode .security-media { gap: 9px; }
+html[lang='th'] .presentation-mode .security-media .screenshot-viewport { height: 265px; max-height: 265px; aspect-ratio: auto; }
+.presentation-mode .scene-drive-architecture .technical-diagram, .presentation-mode .scene-monitor-architecture .technical-diagram { height: 290px; margin-top: 6px; }
+.reading-mode .student-members { position: static; width: auto; margin-top: 26px; }
+.reading-mode .student-members > div { width: 100%; }
+.presentation-mode .ending-members { display: grid; grid-template-columns: 1fr; gap: 2px; width: 690px; margin-top: 26px; }
+.presentation-mode .ending-university { margin-top: 10px; }
+.reading-mode .ending-members { display: grid; gap: 4px; width: 100%; }
 .navigation-controls { display: flex; align-items: center; gap: 25px; margin-left: 15px; }
 .navigation-controls button { border-radius: 50%; width: 61px; height: 61px; display: grid; place-items: center; position: relative; }
 .navigation-controls button > span { position: absolute; top: 66px; font-size: 13px; color: #453d61; }

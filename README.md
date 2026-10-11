@@ -24,7 +24,8 @@ npm run preview
 - Right / Left Arrow (or Page Down / Up): next / previous scene.
 - F: fullscreen; Escape: exit fullscreen or dismiss the source/scene dialog.
 - Top navigation: Home, Overview and the three IDEA chapters.
-- Bottom controls: scene chooser, report sources and speaker notes, reading view, motion pause, fullscreen.
+- Bottom controls: TH | EN language switch, scene chooser, report sources and speaker notes, reading view, motion pause, fullscreen.
+- Thai is the default language. English can be selected immediately; the browser remembers the choice when local storage is available. Switching language keeps the current scene and URL hash.
 - Desktop uses a fixed 1920×1080 composition scaled to fit. Portrait phones default to a scrolling reading view. The view toggle is always available.
 - Reduced motion follows the system setting. Videos require a deliberate play action.
 - The editable scene budgets total **14 minutes 20 seconds**. This is a narration plan, not a timed recording guarantee. Include inserted video playback within each scene's budget.
@@ -44,6 +45,7 @@ See [ASSET_REQUESTS.md](ASSET_REQUESTS.md) for filenames, capture instructions a
 - React / TypeScript / Vite; locally bundled Manrope and Noto Sans Thai fonts.
 - GSAP entrance/reverse scene motion and Flip chapter indicator; SVG relationship diagrams.
 - `src/data`: report references, scene budgets, manifest and diagrams.
+- `src/i18n`: centralized Thai phrase map and language state. English report copy remains the source text; `npm run check` verifies translations for scene notes, sources, diagram records, feature descriptions and media labels.
 - `src/components`: reusable media/evidence frames and scene layouts.
 - `src/hooks/usePresentation.ts`: navigation lock, reduced motion, scene animation and scaling.
 - `public/assets`: original branding, generated decoration, actual screenshots and videos.
@@ -58,7 +60,7 @@ Local tests use installed Google Chrome:
 npm test
 ```
 
-For bundled Chromium, install it with `npx playwright install chromium` and set `PLAYWRIGHT_CHANNEL=chromium` before running tests. The suite covers all scenes, 16:9 bounds, keyboard and chapter navigation, fullscreen, source dialogs, rapid input, placeholders, diagram selection, mobile reflow and automated accessibility checks.
+For bundled Chromium, install it with `npx playwright install chromium` and set `PLAYWRIGHT_CHANNEL=chromium` before running tests. The suite covers all scenes in both languages, 16:9 bounds, keyboard and chapter navigation, fullscreen, source dialogs, rapid input, language persistence, student identities, placeholders, diagram selection, mobile reflow and automated accessibility checks. Reviewed language captures are in [docs/screenshots/i18n](docs/screenshots/i18n); see [BILINGUAL_QA.md](docs/BILINGUAL_QA.md).
 
 Visual capture: start the preview on port 5174, then run `node scripts/capture-review.mjs`. Captures and full axe results stay in the ignored `.impeccable/review` directory. See [QA_REPORT.md](docs/QA_REPORT.md) for the verified scope and remaining owner tasks.
 

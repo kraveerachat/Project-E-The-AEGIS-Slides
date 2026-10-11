@@ -2,6 +2,9 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { scenes } from '../src/data/content'
 
+// The legacy assertions below check the original English copy explicitly.
+test.beforeEach(async ({ page }) => { await page.addInitScript(() => localStorage.setItem('aegis-presentation-language', 'en')) })
+
 test('all 17 scenes render, fit the recording canvas and retain source references', async ({ page }) => {
   const errors: string[] = []
   page.on('pageerror', e => errors.push(e.message))

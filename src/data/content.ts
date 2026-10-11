@@ -9,12 +9,16 @@ export const project = {
   fullTitle: 'Edge-Centric Cyber-Physical Security System with Integrated IoT and Local Data Center',
   thaiTitle: 'ระบบรักษาความปลอดภัยไซเบอร์-กายภาพบนพื้นฐานศูนย์ข้อมูลเอดจ์และอุปกรณ์ไอโอที',
   university: 'Suranaree University of Technology',
-  members: ['กิตติภัทร์ จันทศิลา', 'นฤเบศ แสงประทุม', 'วีรฉัตร จินะปริวัตอาภรณ์'],
+  members: [
+    { id: 'B6701635', th: 'กิตติภัทร์ จันทศิลา', en: 'Mr. Kittiphat Chanthasila' },
+    { id: 'B6702861', th: 'นฤเบศ แสงประทุม', en: 'Mr. Narubet Saengprathum' },
+    { id: 'B6703370', th: 'วีรฉัตร จินะปริวัตอาภรณ์', en: 'Mr. Veerachat Jinapariwataporn' },
+  ],
   report: 'AEGIS_Report_Round11_Column_Alignment_Final.docx',
 }
 
 export const sources: Record<string, SourceReference> = {
-  cover: { id: 'cover', sections: 'Report cover', title: 'Project identity', status: 'reported', note: 'Official English title and three student names transcribed from the report cover. Student IDs are intentionally omitted.' },
+  cover: { id: 'cover', sections: 'Report cover', title: 'Project identity', status: 'reported', note: 'Official English title and three Thai student names are transcribed from the report cover. The English spellings and student IDs were supplied by the owner.' },
   background: { id: 'background', sections: '§1.1–1.2', title: 'Why a local data platform?', status: 'reported', note: 'Local ownership gives teams control over storage and access, while creating responsibilities for authorization, backup, recovery and network boundaries.' },
   objectives: { id: 'objectives', sections: '§1.3–1.5; §3.2', title: 'Objectives and intended users', status: 'reported', note: 'A prototype for SMEs, small offices, home offices and family businesses. Cyber-physical response is an objective; its completion is not claimed.' },
   overview: { id: 'overview', sections: '§1.1; §3.5; §3.11', title: 'Shared host, separate data boundaries', status: 'reported', note: 'Ubuntu/NAS and network infrastructure support three ideas. The subsystems have separate databases, permissions and data boundaries. End-to-end integration is not demonstrated by this relationship alone.' },
