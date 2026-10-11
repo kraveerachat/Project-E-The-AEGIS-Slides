@@ -4,7 +4,7 @@ dist/
 .agents/
 .codex/
 skills-lock.json
-.impeccable/
+.impeccable/*
 !.impeccable/design.json
 playwright-report/
 test-results/
@@ -12,4 +12,5 @@ test-results/
 .env.*
 !.env.example
 *.log
+*.tsbuildinfo
 .DS_Store
