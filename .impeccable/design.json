@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T16:04:22.738Z",
+  "title": "Design System: AEGIS",
+  "extensions": {
+    "colorMeta": {
+      "cream": {
+        "role": "neutral",
+        "displayName": "cream",
+        "canonical": "#faf8f2",
+        "tonalRamp": [
+          "oklch(from #faf8f2 15% c h)",
+          "oklch(from #faf8f2 26.4% c h)",
+          "oklch(from #faf8f2 37.9% c h)",
+          "oklch(from #faf8f2 49.3% c h)",
+          "oklch(from #faf8f2 60.7% c h)",
+          "oklch(from #faf8f2 72.1% c h)",
+          "oklch(from #faf8f2 83.6% c h)",
+          "oklch(from #faf8f2 95% c h)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "paper",
+        "canonical": "#fffefa",
+        "tonalRamp": [
+          "oklch(from #fffefa 15% c h)",
+          "oklch(from #fffefa 26.4% c h)",
+          "oklch(from #fffefa 37.9% c h)",
+          "oklch(from #fffefa 49.3% c h)",
+          "oklch(from #fffefa 60.7% c h)",
+          "oklch(from #fffefa 72.1% c h)",
+          "oklch(from #fffefa 83.6% c h)",
+          "oklch(from #fffefa 95% c h)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "ink",
+        "canonical": "#17182f",
+        "tonalRamp": [
+          "oklch(from #17182f 15% c h)",
+          "oklch(from #17182f 26.4% c h)",
+          "oklch(from #17182f 37.9% c h)",
+          "oklch(from #17182f 49.3% c h)",
+          "oklch(from #17182f 60.7% c h)",
+          "oklch(from #17182f 72.1% c h)",
+          "oklch(from #17182f 83.6% c h)",
+          "oklch(from #17182f 95% c h)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "muted",
+        "canonical": "#565778",
+        "tonalRamp": [
+          "oklch(from #565778 15% c h)",
+          "oklch(from #565778 26.4% c h)",
+          "oklch(from #565778 37.9% c h)",
+          "oklch(from #565778 49.3% c h)",
+          "oklch(from #565778 60.7% c h)",
+          "oklch(from #565778 72.1% c h)",
+          "oklch(from #565778 83.6% c h)",
+          "oklch(from #565778 95% c h)"
+        ]
+      },
+      "purple": {
+        "role": "primary",
+        "displayName": "purple",
+        "canonical": "#6932e9",
+        "tonalRamp": [
+          "oklch(from #6932e9 15% c h)",
+          "oklch(from #6932e9 26.4% c h)",
+          "oklch(from #6932e9 37.9% c h)",
+          "oklch(from #6932e9 49.3% c h)",
+          "oklch(from #6932e9 60.7% c h)",
+          "oklch(from #6932e9 72.1% c h)",
+          "oklch(from #6932e9 83.6% c h)",
+          "oklch(from #6932e9 95% c h)"
+        ]
+      },
+      "purple-deep": {
+        "role": "primary",
+        "displayName": "purple deep",
+        "canonical": "#4d22cc",
+        "tonalRamp": [
+          "oklch(from #4d22cc 15% c h)",
+          "oklch(from #4d22cc 26.4% c h)",
+          "oklch(from #4d22cc 37.9% c h)",
+          "oklch(from #4d22cc 49.3% c h)",
+          "oklch(from #4d22cc 60.7% c h)",
+          "oklch(from #4d22cc 72.1% c h)",
+          "oklch(from #4d22cc 83.6% c h)",
+          "oklch(from #4d22cc 95% c h)"
+        ]
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "blue",
+        "canonical": "#365eea",
+        "tonalRamp": [
+          "oklch(from #365eea 15% c h)",
+          "oklch(from #365eea 26.4% c h)",
+          "oklch(from #365eea 37.9% c h)",
+          "oklch(from #365eea 49.3% c h)",
+          "oklch(from #365eea 60.7% c h)",
+          "oklch(from #365eea 72.1% c h)",
+          "oklch(from #365eea 83.6% c h)",
+          "oklch(from #365eea 95% c h)"
+        ]
+      },
+      "coral": {
+        "role": "secondary",
+        "displayName": "coral",
+        "canonical": "#ed725c",
+        "tonalRamp": [
+          "oklch(from #ed725c 15% c h)",
+          "oklch(from #ed725c 26.4% c h)",
+          "oklch(from #ed725c 37.9% c h)",
+          "oklch(from #ed725c 49.3% c h)",
+          "oklch(from #ed725c 60.7% c h)",
+          "oklch(from #ed725c 72.1% c h)",
+          "oklch(from #ed725c 83.6% c h)",
+          "oklch(from #ed725c 95% c h)"
+        ]
+      },
+      "lime": {
+        "role": "tertiary",
+        "displayName": "lime",
+        "canonical": "#a2bf35",
+        "tonalRamp": [
+          "oklch(from #a2bf35 15% c h)",
+          "oklch(from #a2bf35 26.4% c h)",
+          "oklch(from #a2bf35 37.9% c h)",
+          "oklch(from #a2bf35 49.3% c h)",
+          "oklch(from #a2bf35 60.7% c h)",
+          "oklch(from #a2bf35 72.1% c h)",
+          "oklch(from #a2bf35 83.6% c h)",
+          "oklch(from #a2bf35 95% c h)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "line",
+        "canonical": "#d8d4eb",
+        "tonalRamp": [
+          "oklch(from #d8d4eb 15% c h)",
+          "oklch(from #d8d4eb 26.4% c h)",
+          "oklch(from #d8d4eb 37.9% c h)",
+          "oklch(from #d8d4eb 49.3% c h)",
+          "oklch(from #d8d4eb 60.7% c h)",
+          "oklch(from #d8d4eb 72.1% c h)",
+          "oklch(from #d8d4eb 83.6% c h)",
+          "oklch(from #d8d4eb 95% c h)"
+        ]
+      },
+      "purple-soft": {
+        "role": "primary",
+        "displayName": "purple soft",
+        "canonical": "#eee7ff",
+        "tonalRamp": [
+          "oklch(from #eee7ff 15% c h)",
+          "oklch(from #eee7ff 26.4% c h)",
+          "oklch(from #eee7ff 37.9% c h)",
+          "oklch(from #eee7ff 49.3% c h)",
+          "oklch(from #eee7ff 60.7% c h)",
+          "oklch(from #eee7ff 72.1% c h)",
+          "oklch(from #eee7ff 83.6% c h)",
+          "oklch(from #eee7ff 95% c h)"
+        ]
+      },
+      "blue-soft": {
+        "role": "secondary",
+        "displayName": "blue soft",
+        "canonical": "#e9efff",
+        "tonalRamp": [
+          "oklch(from #e9efff 15% c h)",
+          "oklch(from #e9efff 26.4% c h)",
+          "oklch(from #e9efff 37.9% c h)",
+          "oklch(from #e9efff 49.3% c h)",
+          "oklch(from #e9efff 60.7% c h)",
+          "oklch(from #e9efff 72.1% c h)",
+          "oklch(from #e9efff 83.6% c h)",
+          "oklch(from #e9efff 95% c h)"
+        ]
+      },
+      "coral-soft": {
+        "role": "secondary",
+        "displayName": "coral soft",
+        "canonical": "#fff0e9",
+        "tonalRamp": [
+          "oklch(from #fff0e9 15% c h)",
+          "oklch(from #fff0e9 26.4% c h)",
+          "oklch(from #fff0e9 37.9% c h)",
+          "oklch(from #fff0e9 49.3% c h)",
+          "oklch(from #fff0e9 60.7% c h)",
+          "oklch(from #fff0e9 72.1% c h)",
+          "oklch(from #fff0e9 83.6% c h)",
+          "oklch(from #fff0e9 95% c h)"
+        ]
+      },
+      "lime-soft": {
+        "role": "tertiary",
+        "displayName": "lime soft",
+        "canonical": "#f3f7e1",
+        "tonalRamp": [
+          "oklch(from #f3f7e1 15% c h)",
+          "oklch(from #f3f7e1 26.4% c h)",
+          "oklch(from #f3f7e1 37.9% c h)",
+          "oklch(from #f3f7e1 49.3% c h)",
+          "oklch(from #f3f7e1 60.7% c h)",
+          "oklch(from #f3f7e1 72.1% c h)",
+          "oklch(from #f3f7e1 83.6% c h)",
+          "oklch(from #f3f7e1 95% c h)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Feature display",
+        "purpose": "Large feature scene titles."
+      },
+      "headline": {
+        "displayName": "Scene headline",
+        "purpose": "Shared Heading component."
+      },
+      "chapter": {
+        "displayName": "Chapter title",
+        "purpose": "Architecture chapter headings."
+      },
+      "body": {
+        "displayName": "Scene description",
+        "purpose": "Shared heading description."
+      },
+      "tag": {
+        "displayName": "Category tag",
+        "purpose": "Compact category and status text."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel",
+        "value": "0 22px 60px -24px #30207526, 0 4px 12px -4px #3020750d",
+        "purpose": "Shared diffuse panel depth."
+      },
+      {
+        "name": "primary",
+        "value": "0 15px 32px -13px #7543ce7d",
+        "purpose": "Primary action."
+      },
+      {
+        "name": "primary-hover",
+        "value": "0 20px 36px -13px #7543cea0",
+        "purpose": "Primary action hover."
+      },
+      {
+        "name": "dialog",
+        "value": "0 40px 120px #15112660",
+        "purpose": "Native modal separation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "scene-exit",
+        "value": "220ms power2.in; x: -direction * 110",
+        "purpose": "Directional scene exit."
+      },
+      {
+        "name": "scene-enter",
+        "value": "550ms power3.out; x: direction * 95 to 0",
+        "purpose": "Directional scene entrance."
+      },
+      {
+        "name": "chapter-flip",
+        "value": "480ms power3.out",
+        "purpose": "Active chapter capsule."
+      },
+      {
+        "name": "diagram-flow",
+        "value": "6s linear infinite",
+        "purpose": "Illustrative relationship flow; hidden with motion off."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "reading-css",
+        "value": "899px"
+      },
+      {
+        "name": "automatic-reading",
+        "value": "width < 900px && height > width"
+      }
+    ],
+    "gradients": {
+      "primary": "linear-gradient(115deg, #a456f3, #652ced 54%, #374eff)"
+    },
+    "toneVariants": {
+      "purple": {
+        "accent": "#7035e9",
+        "background": "#f0e9ff",
+        "ink": "#5523bc"
+      },
+      "blue": {
+        "accent": "#416cf1",
+        "background": "#edf2ff",
+        "ink": "#2b4ac4"
+      },
+      "coral": {
+        "accent": "#f17b62",
+        "background": "#fff0e9",
+        "ink": "#a44230"
+      },
+      "lime": {
+        "accent": "#a4c632",
+        "background": "#f4f7e6",
+        "ink": "#526414"
+      },
+      "neutral": {
+        "accent": "#817c9d",
+        "background": "#f2f0f7",
+        "ink": "#5f5a76"
+      }
+    },
+    "rampProvenance": "Synthesized relative OKLCH preview ramps. Not shipped palette tokens.",
+    "sourceFiles": [
+      "src/styles.css",
+      "src/App.tsx",
+      "src/hooks/usePresentation.ts",
+      "src/components/Scenes.tsx",
+      "src/components/MediaFrames.tsx",
+      "src/components/TechnicalDiagramStage.tsx"
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Gradient presentation action with a trailing arrow.",
+      "html": "<button class=\"ds-primary\">Start presentation <span><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\"/></svg></span></button>",
+      "css": ".ds-primary{font-family:'Manrope Variable', 'Noto Sans Thai', sans-serif;background:var(--gradient,linear-gradient(115deg,#a456f3,#652ced 54%,#374eff));color:white;border:0;display:inline-flex;align-items:center;gap:32px;border-radius:55px;padding:23px 27px 23px 38px;font-size:26px;font-weight:650;box-shadow:0 15px 32px -13px #7543ce7d;cursor:pointer;transition:box-shadow .16s ease}.ds-primary span{width:43px;height:43px;background:#30139735;border-radius:50%;display:grid;place-items:center}.ds-primary:hover{box-shadow:0 20px 36px -13px #7543cea0}.ds-primary:active{filter:brightness(.97)}.ds-primary:focus-visible{outline:3px solid var(--purple-deep,#4d22cc);outline-offset:5px}"
+    },
+    {
+      "name": "Closing text action",
+      "kind": "button",
+      "description": "Transparent secondary action.",
+      "html": "<button class=\"ds-text\">Back to overview</button>",
+      "css": ".ds-text{font-family:'Manrope Variable', 'Noto Sans Thai', sans-serif;border:0;background:transparent;font-size:18px;color:#5d4d78;padding:14px 0;cursor:pointer}.ds-text:hover{color:#6c31d9}.ds-text:active{filter:brightness(.97)}.ds-text:focus-visible{outline:3px solid var(--purple-deep,#4d22cc);outline-offset:5px}"
+    },
+    {
+      "name": "Chapter rail",
+      "kind": "nav",
+      "description": "Pill navigation; static preview of the active capsule.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Chapters\"><button aria-current=\"page\">Overview</button><button>IDEA 1</button><button>IDEA 2</button></nav>",
+      "css": ".ds-nav{font-family:'Manrope Variable', 'Noto Sans Thai', sans-serif;border:1px solid #bdb7db;border-radius:60px;height:65px;display:flex;align-items:center;padding:4px;background:#fffefa5c}.ds-nav button{border:0;border-radius:50px;background:transparent;flex:1;height:55px;padding:0 31px;font:600 21px 'Manrope Variable', 'Noto Sans Thai', sans-serif;cursor:pointer;white-space:nowrap}.ds-nav button[aria-current]{background:var(--gradient,linear-gradient(115deg,#a456f3,#652ced 54%,#374eff));color:white;box-shadow:0 7px 17px -6px #652ce967}.ds-nav button:hover:not([aria-current]){background:#e9e3fa80}.ds-nav button:focus-visible{outline:3px solid var(--purple-deep,#4d22cc);outline-offset:5px}"
+    },
+    {
+      "name": "Category tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Default purple category tag.",
+      "html": "<span class=\"ds-tag\">File lifecycle</span>",
+      "css": ".ds-tag{font-family:'Manrope Variable', 'Noto Sans Thai', sans-serif;display:inline-flex;gap:11px;padding:12px 19px;border:1px solid color-mix(in srgb,var(--purple,#6932e9) 24%,transparent);background:var(--purple-soft,#eee7ff);color:var(--purple-deep,#4d22cc);border-radius:35px;font-size:20px;font-weight:600;line-height:1.2}"
+    },
+    {
+      "name": "Evidence panel",
+      "kind": "card",
+      "refersTo": "evidence-panel",
+      "description": "Reported evidence with explanatory scope.",
+      "html": "<aside class=\"ds-evidence\"><strong>Reported evidence</strong><p>Results are traceable to the supplied report.</p></aside>",
+      "css": ".ds-evidence{font-family:'Manrope Variable', 'Noto Sans Thai', sans-serif;padding:25px 28px;border-radius:22px;background:var(--paper,#fffefa);color:var(--ink,#17182f);box-shadow:var(--shadow,0 22px 60px -24px #30207526,0 4px 12px -4px #3020750d)}.ds-evidence strong{display:block;font-size:25px;line-height:1.25;margin-bottom:10px}.ds-evidence p{font-size:22px;line-height:1.5;color:var(--muted,#565778);margin:0}"
+    },
+    {
+      "name": "Screenshot selector",
+      "kind": "button",
+      "description": "Pressed gallery selection.",
+      "html": "<button class=\"ds-gallery\" aria-pressed=\"true\">01 · File manager</button>",
+      "css": ".ds-gallery{font-family:'Manrope Variable', 'Noto Sans Thai', sans-serif;border:1px solid #d7ceec;border-radius:13px;background:#fffefa80;color:#5c5173;padding:13px 9px;font-size:13px;line-height:1.3;text-align:left;cursor:pointer}.ds-gallery[aria-pressed=\"true\"]{background:#ede3ff;border-color:#a081d6;color:#4f258f}.ds-gallery:hover{background:#f0eafa}.ds-gallery:focus-visible{outline:3px solid var(--purple-deep,#4d22cc);outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Approved editorial presentation",
+    "overview": "AEGIS uses the approved cream, violet, royal blue and coral editorial presentation world: oversized typography, asymmetric compositions, rounded panels and geometric arcs. The technical content stays legible against warm paper, while gradients connect major headings, actions and the active chapter capsule.\n\nOriginal university and project marks anchor the identity. Generated monument artwork is decorative; application captures and recordings have explicit evidence states. This records the implemented React presentation, with source CSS and component behavior taking precedence over earlier plans.",
+    "keyCharacteristics": [
+      "Oversized gradient headings and approved chapter identifiers.",
+      "Warm cream canvas, dark navy text and softly tinted panels.",
+      "Asymmetric editorial layouts with circular arcs and restrained ambient depth.",
+      "Fixed recording composition with a separate reflowing reading mode.",
+      "Evidence labels and optional motion remain part of the interface."
+    ],
+    "rules": [
+      {
+        "name": "The Evidence State Rule",
+        "body": "Keep reported, limited and pending states explicit in words; color alone never establishes evidence.",
+        "section": "colors"
+      },
+      {
+        "name": "The Recording Frame Rule",
+        "body": "Compose presentation mode at 1920 × 1080 and scale the complete stage uniformly; use reading mode for reflow.",
+        "section": "layout"
+      },
+      {
+        "name": "The Optional Motion Rule",
+        "body": "System reduced motion and the motion control suppress scene animation, chapter morphing, parallax and decorative diagram flow.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do retain the approved large gradient headings, rounded panels and chapter identifiers.",
+      "Do preserve the supplied original marks and keep generated artwork identified as illustrative.",
+      "Do use semantic controls, visible focus and explicit selected or pressed states.",
+      "Do maintain 16:9 media stages and readable missing or unavailable messages."
+    ],
+    "donts": [
+      "Don't present decorative diagram flow as live telemetry.",
+      "Don't substitute generated application screens for original system evidence.",
+      "Don't auto-advance scenes or autoplay recordings."
+    ]
+  }
+}
