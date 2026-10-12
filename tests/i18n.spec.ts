@@ -4,27 +4,27 @@ import AxeBuilder from '@axe-core/playwright'
 
 test('Thai is the default and switching preserves the scene, hash and selected language', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.goto('/#drive-results')
+  await page.goto('/#performance')
   await expect(page.locator('html')).toHaveAttribute('lang', 'th')
-  await expect(page.locator('main h1')).toContainText('วัดการรับส่งไฟล์')
+  await expect(page.locator('main h1')).toContainText('วัดเส้นทาง')
   await expect(page.locator('.language-switch button[lang="th"]')).toHaveAttribute('aria-pressed', 'true')
   await page.locator('.language-switch button[lang="en"]').click()
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
-  await expect(page.locator('main h1')).toContainText('Measured transfers.')
-  await expect(page.locator('main')).toHaveAttribute('data-scene-id', 'drive-results')
-  expect(new URL(page.url()).hash).toBe('#drive-results')
+  await expect(page.locator('main h1')).toContainText('Measure the path.')
+  await expect(page.locator('main')).toHaveAttribute('data-scene-id', 'performance')
+  expect(new URL(page.url()).hash).toBe('#performance')
   await page.reload()
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
-  await expect(page.locator('main h1')).toContainText('Measured transfers.')
+  await expect(page.locator('main h1')).toContainText('Measure the path.')
   await page.locator('.language-switch button[lang="th"]').click()
-  await expect(page.locator('main h1')).toContainText('วัดการรับส่งไฟล์')
+  await expect(page.locator('main h1')).toContainText('วัดเส้นทาง')
   await page.keyboard.press('ArrowRight')
-  await expect(page.locator('main')).toHaveAttribute('data-scene-id', 'monitor-architecture')
+  await expect(page.locator('main')).toHaveAttribute('data-scene-id', 'security-scope')
   await page.keyboard.press('ArrowLeft')
-  await expect(page.locator('main')).toHaveAttribute('data-scene-id', 'drive-results')
+  await expect(page.locator('main')).toHaveAttribute('data-scene-id', 'performance')
 })
 
-test('all 17 scenes retain Thai copy, IDs, source notes and available controls', async ({ page }) => {
+test('all configured scenes retain Thai copy, IDs, source notes and available controls', async ({ page }) => {
   test.setTimeout(120000)
   const errors: string[] = []
   page.on('pageerror', error => errors.push(error.message))
@@ -37,7 +37,9 @@ test('all 17 scenes retain Thai copy, IDs, source notes and available controls',
     await expect(page.locator('.language-switch button[lang="th"]')).toBeVisible()
     await expect(page.locator('.utility-controls > button')).toHaveCount(5)
     const untranslated = await page.evaluate(async () => {
-      const { thaiPhrases } = await import('/src/i18n/th.ts')
+      const { thaiPhrases: uiPhrases } = await import('/src/i18n/th.ts')
+      const { contentPhrases } = await import('/src/data/content.ts')
+      const thaiPhrases = { ...uiPhrases, ...contentPhrases }
       const walker = document.createTreeWalker(document.getElementById('root')!, NodeFilter.SHOW_TEXT)
       const missing: string[] = []
       while (walker.nextNode()) {
@@ -47,7 +49,7 @@ test('all 17 scenes retain Thai copy, IDs, source notes and available controls',
       return missing
     })
     expect(untranslated, scene.id).toEqual([])
-    if (scene.id === 'cover' || scene.id === 'ending') for (const member of project.members) {
+    if (scene.id === 'cover') for (const member of project.members) {
       await expect(page.locator('main')).toContainText(member.id)
       await expect(page.locator('main')).toContainText(member.th)
     }
@@ -63,10 +65,10 @@ test('all 17 scenes retain Thai copy, IDs, source notes and available controls',
   expect(errors).toEqual([])
 })
 
-test('owner-supplied English names and IDs appear exactly on cover and ending', async ({ page }) => {
+test('owner-supplied English names and IDs appear exactly on the cover', async ({ page }) => {
   await page.goto('/#cover')
   await page.locator('.language-switch button[lang="en"]').click()
-  for (const id of ['cover','ending']) {
+  for (const id of ['cover']) {
     await page.goto(`/#${id}`)
     for (const member of project.members) {
       const row = page.locator('.member-row').filter({ hasText: member.id })
@@ -79,10 +81,10 @@ test('diagram inspector and gallery selection survive a language change', async 
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/#network')
   await page.locator('.diagram-node').last().click()
-  await expect(page.locator('.diagram-inspector')).toContainText('รอการยืนยัน')
+  await expect(page.locator('.diagram-inspector')).toContainText('สงวนไว้')
   await page.locator('.language-switch button[lang="en"]').click()
   await expect(page.locator('.diagram-node').last()).toHaveAttribute('aria-pressed', 'true')
-  await expect(page.locator('.diagram-inspector')).toContainText('pending verification')
+  await expect(page.locator('.diagram-inspector')).toContainText('reserved')
   await page.goto('/#drive-demo')
   await page.locator('.gallery-tabs button').nth(1).click()
   await expect(page.locator('.gallery-tabs button').nth(1)).toHaveAttribute('aria-pressed', 'true')
@@ -127,7 +129,7 @@ test('language switching remains usable when browser storage is unavailable', as
 
 test('Thai controls and diagrams have no serious automated accessibility violations', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  for (const id of ['cover', 'network', 'security']) {
+  for (const id of ['cover', 'network', 'security-findings']) {
     await page.goto(`/#${id}`)
     const result = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()
     expect(result.violations.filter(item => item.impact === 'critical' || item.impact === 'serious'), id).toEqual([])

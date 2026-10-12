@@ -5,7 +5,7 @@ import { scenes } from '../src/data/content'
 // The legacy assertions below check the original English copy explicitly.
 test.beforeEach(async ({ page }) => { await page.addInitScript(() => localStorage.setItem('aegis-presentation-language', 'en')) })
 
-test('all 17 scenes render, fit the recording canvas and retain source references', async ({ page }) => {
+test('all configured scenes render, fit the recording canvas and retain source references', async ({ page }) => {
   const errors: string[] = []
   page.on('pageerror', e => errors.push(e.message))
   await page.emulateMedia({ reducedMotion: 'reduce' })
@@ -46,12 +46,12 @@ test('keyboard, chapter links, chooser, fullscreen and reverse transitions work'
   await page.getByRole('button', { name: 'Idea 2', exact: true }).click()
   await expect(page.locator('main')).toHaveAttribute('data-scene-id', 'monitor-architecture')
   await expect(page.locator('main')).toHaveAttribute('aria-busy', 'false')
-  await page.getByRole('button', { name: 'Open all 17 scenes' }).click()
-  await expect(page.locator('.scene-picker button')).toHaveCount(17)
+  await page.getByRole('button', { name: `Open all ${scenes.length} scenes` }).click()
+  await expect(page.locator('.scene-picker button')).toHaveCount(scenes.length)
   await page.keyboard.press('ArrowRight')
   await expect(page.locator('main')).toHaveAttribute('data-scene-id', 'monitor-architecture')
-  await page.getByRole('button', { name: /A working lifecycle/ }).click()
-  await expect(page.locator('main')).toHaveAttribute('data-scene-id', 'monitor-results')
+  await page.getByRole('button', { name: /Network evidence/ }).click()
+  await expect(page.locator('main')).toHaveAttribute('data-scene-id', 'network-results')
   await expect(page.locator('main')).toHaveAttribute('aria-busy', 'false')
   await page.keyboard.press('f')
   await expect.poll(() => page.evaluate(() => Boolean(document.fullscreenElement))).toBe(true)
@@ -69,12 +69,12 @@ test('rapid navigation is bounded and never leaves a hidden or stuck scene', asy
   await expect(page.locator('main')).toHaveAttribute('data-scene-id','background')
   await expect(page.locator('main')).toHaveCSS('opacity','1')
   await page.keyboard.press('ArrowRight')
-  await expect(page.locator('main')).toHaveAttribute('data-scene-id','objectives')
+  await expect(page.locator('main')).toHaveAttribute('data-scene-id','overview')
 })
 
 test('all gallery placeholders and diagram interactions work without broken media', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  for (const id of ['drive-demo','monitor-demo','security']) {
+  for (const id of ['drive-demo','monitor-demo']) {
     await page.goto(`/#${id}`)
     const buttons = page.locator('.gallery-tabs button')
     for (let i=0; i<await buttons.count(); i++) { await buttons.nth(i).click(); await expect(buttons.nth(i)).toHaveAttribute('aria-pressed','true'); await expect(page.locator('.screenshot-frame .placeholder-state')).toHaveText('Awaiting actual system screenshot') }
@@ -82,8 +82,8 @@ test('all gallery placeholders and diagram interactions work without broken medi
     expect(await page.locator('img').evaluateAll(images => images.filter(i => !i.complete || !i.naturalWidth).map(i => i.src))).toEqual([])
   }
   await page.goto('/#network')
-  await page.getByRole('button', { name: 'Response area. VLAN 40 · Prepared' }).click()
-  await expect(page.locator('.diagram-inspector')).toContainText('pending verification')
+  await page.getByRole('button', { name: 'Reserved port. VLAN 40 · Reserved' }).click()
+  await expect(page.locator('.diagram-inspector')).toContainText('reserved')
   await page.getByRole('button', { name: 'MikroTik hEX lite. RB750r2 · Edge router' }).focus()
   await page.keyboard.press('Enter')
   await expect(page.locator('.diagram-inspector')).toContainText('100 Mbps')
@@ -107,7 +107,7 @@ test('mobile reading view reflows every scene and keeps controls usable', async 
 
 test('representative scenes have no serious or critical automated accessibility violations', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  for (const id of ['cover','network','drive-demo','monitor-results','security']) {
+  for (const id of ['cover','network','drive-demo','network-results','security-findings']) {
     await page.goto(`/#${id}`)
     const results = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()
     expect(results.violations.filter(v => v.impact === 'critical' || v.impact === 'serious'), id).toEqual([])

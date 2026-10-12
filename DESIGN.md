@@ -195,3 +195,7 @@ Screenshot and video viewports preserve 16:9 and contain supplied media. Pending
 - Don't present decorative diagram flow as live telemetry.
 - Don't substitute generated application screens for original system evidence.
 - Don't auto-advance scenes or autoplay recordings.
+
+## V3 evidence surfaces
+
+The hardware photo story, server configuration, network matrices, performance table and three assessment scenes preserve the recorded palette and typography. Original photos have full-image inspection dialogs. Findings expose PASS, OBSERVED, POTENTIAL, NOT TESTED and LIMITATION in text. Tables reflow as labeled rows in reading mode. Playback expands inside the stage; background controls become inert and focus returns after exit. The final title uses a smaller cover subtitle and keeps the original wordmark/art composition. See docs/V3_DESIGN_REVIEW.md.

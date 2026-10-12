@@ -1,69 +1,47 @@
 # AEGIS Final Presentation
 
-An independent, recording-ready presentation website for the AEGIS academic project. React, TypeScript, Vite and GSAP. This repository has no connection to the AEGIS production applications or private network.
+A bilingual, recording-ready React / TypeScript / Vite presentation of **AEGIS: Local Data Center, Monitoring, Network Infrastructure and Security Assessment**. The 18 scenes follow the owner's V3 brief and the 180-page final report. No production backend or private network is needed.
 
-## Run locally
-
-Use Node.js 24 LTS and npm. No environment variables, credentials or private backend are required.
+## Run and verify
 
 ```sh
 npm ci
 npm run dev
-```
-
-Open http://127.0.0.1:5173. For an occupied port: `npm run dev -- --port 5174`.
-
-```sh
 npm run check
 npm run build
-npm run preview
-```
-
-## Present and record
-
-- Right / Left Arrow (or Page Down / Up): next / previous scene.
-- F: fullscreen; Escape: exit fullscreen or dismiss the source/scene dialog.
-- Top navigation: Home, Overview and the three IDEA chapters.
-- Bottom controls: TH | EN language switch, scene chooser, report sources and speaker notes, reading view, motion pause, fullscreen.
-- Thai is the default language. English can be selected immediately; the browser remembers the choice when local storage is available. Switching language keeps the current scene and URL hash.
-- Desktop uses a fixed 1920×1080 composition scaled to fit. Portrait phones default to a scrolling reading view. The view toggle is always available.
-- Reduced motion follows the system setting. Videos require a deliberate play action.
-- The editable scene budgets total **14 minutes 20 seconds**. This is a narration plan, not a timed recording guarantee. Include inserted video playback within each scene's budget.
-
-Exactly 17 scenes cover the required sequence. Scenes and speaker notes are in `src/data/content.ts`; scene compositions are in `src/components/Scenes.tsx`.
-
-## Content and media
-
-The draft is based on the owner's **AEGIS Round 11 report**. The private report is not published in this repository. Every scene exposes editable section references in its source dialog. See [CONTENT_SOURCES.md](docs/CONTENT_SOURCES.md).
-
-Both original logos are included. The monument artwork is explicitly decorative, based on the approved cover reference. All system UI frames await actual owner-supplied media: **14 screenshots and 3 videos**. No application screenshots or test results were generated.
-
-See [ASSET_REQUESTS.md](ASSET_REQUESTS.md) for filenames, capture instructions and the two-step replacement process. The centralized manifest is `src/data/assets.ts`.
-
-## Architecture
-
-- React / TypeScript / Vite; locally bundled Manrope and Noto Sans Thai fonts.
-- GSAP entrance/reverse scene motion and Flip chapter indicator; SVG relationship diagrams.
-- `src/data`: report references, scene budgets, manifest and diagrams.
-- `src/i18n`: centralized Thai phrase map and language state. English report copy remains the source text; `npm run check` verifies translations for scene notes, sources, diagram records, feature descriptions and media labels.
-- `src/components`: reusable media/evidence frames and scene layouts.
-- `src/hooks/usePresentation.ts`: navigation lock, reduced motion, scene animation and scaling.
-- `public/assets`: original branding, generated decoration, actual screenshots and videos.
-
-Missing/error media retain their reserved dimensions. IDEA 3 can be updated by changing content, sources and manifest entries, without replacing the media or scene architecture.
-
-## Browser checks
-
-Local tests use installed Google Chrome:
-
-```sh
 npm test
 ```
 
-For bundled Chromium, install it with `npx playwright install chromium` and set `PLAYWRIGHT_CHANNEL=chromium` before running tests. The suite covers all scenes in both languages, 16:9 bounds, keyboard and chapter navigation, fullscreen, source dialogs, rapid input, language persistence, student identities, placeholders, diagram selection, mobile reflow and automated accessibility checks. Reviewed language captures are in [docs/screenshots/i18n](docs/screenshots/i18n); see [BILINGUAL_QA.md](docs/BILINGUAL_QA.md).
+The default preview is http://127.0.0.1:5173. An alternate port is supported with `npm run dev -- --port 5193`. Browser tests use installed Chrome; `PLAYWRIGHT_PORT` chooses a test port and `PLAYWRIGHT_CHANNEL` chooses the browser channel.
 
-Visual capture: start the preview on port 5174, then run `node scripts/capture-review.mjs`. Captures and full axe results stay in the ignored `.impeccable/review` directory. See [QA_REPORT.md](docs/QA_REPORT.md) for the verified scope and remaining owner tasks.
+## Present
+
+- Arrow Left/Right or Page Up/Down: previous/next scene. F: fullscreen. Escape: close an inspection or exit fullscreen.
+- The chapter rail links Home, Overview and the three IDEA chapters. The footer contains scene selection, references/speaker notes, TH/EN, reading mode and motion controls.
+- Thai is the default. Language selection persists when browser storage is available and preserves the current scene and interactive selections.
+- The 1920×1080 canvas scales to the screen. Portrait phones use a reflowing reading layout. Reduced motion follows the system preference or the footer control.
+- The planned budget is **14:35**, including two **90-second** recordings and a 20-second hardware scene. The remaining buffer to 15 minutes is 25 seconds. Timing is a narration plan, not a recording guarantee.
+- Both hardware photos open in a keyboard-accessible original-image inspection. Actual video playback expands to Presentation Video Mode and returns to the scene on completion or exit. It never advances the scene automatically.
+
+## Content and media
+
+`src/data/content.ts` contains ordered scenes, bilingual speaker notes, final-report references, timing and findings. `src/data/diagrams.ts` describes documented relationships; animated flow is illustrative. IDEA 3 is **Network and Web Application Security Assessment**, with separate scope, methodology and findings scenes. Assessor evidence stays separate from development-team tests.
+
+The original SUT and AEGIS marks and two unchanged owner hardware photographs are included. The monument artwork is decorative. **19 real media assets remain missing:** 10 application screenshots, 5 redacted assessment captures, 2 video posters and 2 demonstration videos. Labeled frames preserve the layouts.
+
+The central asset manifest is `src/data/assets.ts`. See [ASSET_REQUESTS.md](ASSET_REQUESTS.md) for exact files and insertion instructions. Missing or failed media never require application/backend access. Print uses a real poster or a labeled static frame for video.
+
+## Architecture and review
+
+- React scene components, SVG diagrams, GSAP entrances/reverse transitions and Flip chapter navigation.
+- Existing language provider combines the UI dictionary with bilingual source records; Manrope and Noto Sans Thai are bundled locally.
+- Native photo/evidence dialogs isolate keyboard navigation. Video focus temporarily makes background controls inert and restores focus on exit.
+- Legacy scene links resolve to their revised scene equivalents.
+- `node scripts/capture-v3.mjs http://127.0.0.1:5193` captures both languages and writes the required review screenshots to `docs/screenshots/v3/`. Other review captures stay in the ignored `.impeccable/review/v3/` folder.
+- `tests/fixtures/playback.mp4` is a neutral test-only clip for browser decoding, never a public AEGIS recording.
+
+See [CONTENT_SOURCES.md](docs/CONTENT_SOURCES.md), [QA_REPORT.md](docs/QA_REPORT.md) and [ASSET_PROVENANCE.md](docs/ASSET_PROVENANCE.md).
 
 ## Deployment
 
-Vercel build command: `npm run build`. Output: `dist`. See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md). **Public deployment is pending owner authorization.**
+Vercel: `npm run build`, output `dist`. See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md). Production deployment requires separate owner authorization. Temporary report extracts and generated PDFs are excluded from Git.

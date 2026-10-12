@@ -1,10 +1,12 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { thaiPhrases } from './th'
+import { contentPhrases } from '../data/content'
+const phrases: Record<string, string> = { ...thaiPhrases, ...contentPhrases }
 
 export type Language = 'th' | 'en'
 const STORAGE_KEY = 'aegis-presentation-language'
-const translatableAttributes = ['aria-label', 'title', 'alt', 'placeholder'] as const
+const translatableAttributes = ['aria-label', 'title', 'alt', 'placeholder', 'data-label'] as const
 type Original = { english: string; translated: string }
 const originalText = new WeakMap<Text, Original>()
 const originalAttributes = new WeakMap<Element, Map<string, Original>>()
@@ -12,7 +14,7 @@ const originalAttributes = new WeakMap<Element, Map<string, Original>>()
 function localized(input: string, language: Language): string {
   if (language === 'en') return input
   const phrase = input.trim()
-  const translated = thaiPhrases[phrase as keyof typeof thaiPhrases]
+  const translated = phrases[phrase as keyof typeof phrases]
   if (translated) return input.replace(phrase, translated)
   const planned = phrase.match(/^(\d+:\d+) planned · 15 min maximum$/)
   if (planned) return `${planned[1]} ตามแผน · สูงสุด 15 นาที`
@@ -23,19 +25,23 @@ function localized(input: string, language: Language): string {
   const recorded = phrase.match(/^Recorded demonstration of (.+)$/)
   if (recorded) return `วิดีโอสาธิต ${localized(recorded[1], language)}`
   const leadingDot = phrase.match(/^· (.+)$/)
-  if (leadingDot && thaiPhrases[leadingDot[1] as keyof typeof thaiPhrases]) return `· ${localized(leadingDot[1], language)}`
+  if (leadingDot && phrases[leadingDot[1] as keyof typeof phrases]) return `· ${localized(leadingDot[1], language)}`
   const awaiting = phrase.match(/^(.+): (file unavailable|awaiting real media)$/)
   if (awaiting) return `${localized(awaiting[1], language)}: ${localized(awaiting[2], language)}`
   const diagram = phrase.match(/^(.+)\. Reported connections are solid; reserved integration is dashed\.$/)
   if (diagram) return `${localized(diagram[1], language)} เส้นทึบแสดงความสัมพันธ์ตามรายงาน เส้นประแสดงส่วนที่เตรียมไว้`
   const node = phrase.match(/^(.+)\. (VLAN \d+ · .+|RB750r2 · .+|LAN or Twingate resource|Ubuntu · NGINX|Session · RBAC · ownership|Encryption in the browser|Files \+ Vault ciphertext|Application metadata|Bound to its Edge Node|YOLO · YuNet · SFace|Sessions · camera rights|Full or partial video clip|SCP \/ SSH · SHA-256|PostgreSQL metadata)$/)
   if (node) return `${localized(node[1], language)} · ${localized(node[2], language)}`
-  const scene = phrase.match(/^Scene (\d+) of 17(?:: (.+))?\.?$/)
-  if (scene) return `ฉาก ${scene[1]} จาก 17${scene[2] ? `: ${thaiPhrases[scene[2] as keyof typeof thaiPhrases] ?? scene[2]}` : ''}${phrase.endsWith('.') ? '.' : ''}`
+  const scene = phrase.match(/^Scene (\d+) of (\d+)(?:: (.+))?\.?$/)
+  if (scene) return `ฉาก ${scene[1]} จาก ${scene[2]}${scene[3] ? `: ${localized(scene[3],language)}` : ''}${phrase.endsWith('.') ? '.' : ''}`
+  const chooser = phrase.match(/^Open all (\d+) scenes$/)
+  if (chooser) return `เปิดรายการทั้ง ${chooser[1]} ฉาก`
+  const inspect = phrase.match(/^Inspect (.+)$/)
+  if (inspect) return `ตรวจดู ${localized(inspect[1],language)}`
   const footer = phrase.match(/^(\d{2}) · (.+)$/)
   if (footer) return `${footer[1]} · ${localized(footer[2], language)}`
   const pair = phrase.match(/^(.+?)\. (.+)$/)
-  if (pair && (thaiPhrases[pair[1] as keyof typeof thaiPhrases] || thaiPhrases[pair[2] as keyof typeof thaiPhrases])) return `${localized(pair[1], language)} · ${localized(pair[2], language)}`
+  if (pair && (phrases[pair[1] as keyof typeof phrases] || phrases[pair[2] as keyof typeof phrases])) return `${localized(pair[1], language)} · ${localized(pair[2], language)}`
   const sourceScene = phrase.match(/^SCENE (\d+) · (.+) speaking target$/)
   if (sourceScene) return `ฉาก ${sourceScene[1]} · เวลาเสนอ ${sourceScene[2]}`
   return input

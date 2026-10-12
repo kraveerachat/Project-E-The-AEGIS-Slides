@@ -1,30 +1,15 @@
-# Thai and English presentation review
+# V3 bilingual QA
 
-The reviewed `main` version is the English-only baseline. The update keeps the same 17 scene IDs and report-backed claims. Thai is now the initial language; the TH | EN control is present in the footer of every scene. The three IDs and both name spellings match the owner's supplied records.
+The current 18-scene V3 implementation retains the existing TH/EN provider, local-storage preference, current scene/hash and selected interactive states. English is the source text; report titles, notes and source interpretations are paired with Thai beside their records. The UI dictionary supplies controls, captions, descriptions and findings.
 
-## Visual comparison
+Natural Thai keeps NAS, VLAN, Twingate, Cloudflare, Docker, TLS, RBAC, SHA-256 and assessment tools where appropriate. Student IDs and both owner-approved name spellings remain exactly on the cover. Verified numerical values and test conditions are unchanged between languages.
 
-All captures are 1920×1080. `before-en-*` was captured from reviewed `origin/main` (`2a2fd93`) with the original fonts. The baseline had no Thai mode, so a `before-th-*` state does not exist. `after-th-*` and `after-en-*` show the completed bilingual update.
+Executed checks (13 October 2026):
 
-| Scene | Before EN | After TH | After EN |
-|---|---|---|---|
-| Cover | [image](screenshots/i18n/before-en-cover.png) | [image](screenshots/i18n/after-th-cover.png) | [image](screenshots/i18n/after-en-cover.png) |
-| Background | [image](screenshots/i18n/before-en-background.png) | [image](screenshots/i18n/after-th-background.png) | [image](screenshots/i18n/after-en-background.png) |
-| Network architecture | [image](screenshots/i18n/before-en-network.png) | [image](screenshots/i18n/after-th-network.png) | [image](screenshots/i18n/after-en-network.png) |
-| IDEA 1 features | [image](screenshots/i18n/before-en-drive-features.png) | [image](screenshots/i18n/after-th-drive-features.png) | [image](screenshots/i18n/after-en-drive-features.png) |
-| IDEA 2 architecture | [image](screenshots/i18n/before-en-monitor-architecture.png) | [image](screenshots/i18n/after-th-monitor-architecture.png) | [image](screenshots/i18n/after-en-monitor-architecture.png) |
-| IDEA 3 pending | [image](screenshots/i18n/before-en-security.png) | [image](screenshots/i18n/after-th-security.png) | [image](screenshots/i18n/after-en-security.png) |
-| Source and speaker notes | [image](screenshots/i18n/before-en-sources.png) | [image](screenshots/i18n/after-th-sources.png) | [image](screenshots/i18n/after-en-sources.png) |
+- npm run check validates translations for every scene title/note, source record, diagram node/edge, core feature and asset label.
+- All 18 scenes rendered in both modes. Language switching preserved the scene/hash, gallery and selected diagram node; persistence and unavailable-storage fallback passed.
+- TH and EN all-scene mobile reflow tests passed at 390×844. Both languages fit the fixed 1920×1080 canvas; final browser captures returned no footer overlap or horizontal clipping.
+- Required TH/EN screenshots are in docs/screenshots/v3/. Mobile and intermediate inspection captures are kept locally under .impeccable/review/v3/.
+- Representative automated accessibility checks passed at serious/critical severity; hardware inspection passed keyboard and synthesized Chromium touch tests.
 
-[Closing TH](screenshots/i18n/after-th-ending.png) · [Closing EN](screenshots/i18n/after-en-ending.png)
-
-Mobile reading captures: [Cover TH](screenshots/i18n/after-th-cover-mobile.png) · [Cover EN](screenshots/i18n/after-en-cover-mobile.png) · [Closing TH](screenshots/i18n/after-th-ending-mobile.png) · [Closing EN](screenshots/i18n/after-en-ending-mobile.png).
-
-## Verification
-
-- `npm run check`: 17 scenes, source/asset references, exact student records and Thai coverage of scene notes, sources, diagram records, feature records and media labels.
-- `npm test`: **14 passed** in Chrome. Coverage includes both languages, navigation and persistence, localStorage failure fallback, scene/render checks, missing-media behavior, mobile horizontal overflow, diagram and gallery state, and automated accessibility checks.
-- `npm run build`: **passed**, producing Vercel output in `dist`.
-- Browser captures: every scene inspected in both languages for text clipping into the footer; no page JavaScript errors in the capture run.
-
-The 14 real screenshots and 3 demonstration videos remain intentionally missing. The placeholders preserve their final dimensions, and their labels are localized. No video playback claim was made without owner media.
+No claim is made about every physical phone/browser, screen reader combination or projector. See QA_REPORT.md for the executed suite and remaining owner media/rehearsal checks.

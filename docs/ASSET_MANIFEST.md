@@ -1,0 +1,30 @@
+# V3 asset manifest
+
+Generated from src/data/assets.ts.
+
+| ID | Scene | Type | Expected filename | Ratio | Required resolution | Purpose | Source | Status |
+|---|---|---|---|---|---|---|---|---|
+| sut-logo | All scenes | image | branding/sut-standard.png | Original | Original supplied file | Original university logo; proportions and original pixels preserved. | REAL | AVAILABLE |
+| aegis-logo | Cover / Ending / masthead | image | branding/aegis-mark-dark-ink.png | 1:1 | Original supplied file | Original AEGIS project mark, separate from the typographic wordmark. | REAL | AVAILABLE |
+| cover-art | Cover / Overview / Ending | image | generated/monument-arcs.png | 4:5 | 1122×1402 | Decorative illustration derived from the approved cover reference. Not a documentary campus photograph or test evidence. | GENERATED | AVAILABLE |
+| drive-dashboard | 10 — IDEA 1 Real UI Demonstration | image | screenshots/idea1/dashboard.png | 16:9 | 1920×1080 minimum | Show the actual authenticated Drive overview using a sanitized demonstration account. Capture login separately if desired. | REAL | MISSING |
+| drive-files | 10 — IDEA 1 Real UI Demonstration | image | screenshots/idea1/files.png | 16:9 | 1920×1080 minimum | Show the real file list, folders and completed upload state. Use non-sensitive sample filenames. | REAL | MISSING |
+| drive-vault | 10 — IDEA 1 Real UI Demonstration | image | screenshots/idea1/private-vault.png | 16:9 | 1920×1080 minimum | Show the actual Vault interface and its lock/unlock state without revealing passphrases or private file content. | REAL | MISSING |
+| drive-shares | 10 — IDEA 1 Real UI Demonstration | image | screenshots/idea1/secure-sharing.png | 16:9 | 1920×1080 minimum | Show password, expiry and revocation controls. Redact active share tokens and links. | REAL | MISSING |
+| drive-backup | 10 — IDEA 1 Real UI Demonstration | image | screenshots/idea1/storage-backup.png | 16:9 | 1920×1080 minimum | Show the actual manual backup/restore or access-control screen. Do not imply a verified schedule or installed RAID. | REAL | MISSING |
+| monitor-live | 12 — IDEA 2 Real UI Demonstration | image | screenshots/idea2/operator-live.png | 16:9 | 1920×1080 minimum | Show an approved camera stream with operator controls. Blur faces and private surroundings unless publication is authorized. | REAL | MISSING |
+| monitor-detection | 12 — IDEA 2 Real UI Demonstration | image | screenshots/idea2/detection.png | 16:9 | 1920×1080 minimum | Show a real Authorized/Unknown detection state with permission to show the subject. No synthetic bounding boxes. | REAL | MISSING |
+| monitor-soc | 12 — IDEA 2 Real UI Demonstration | image | screenshots/idea2/soc-monitoring.png | 16:9 | 1920×1080 minimum | Show actual SOC passive viewing with Node and logical camera identity; redact personal device names. | REAL | MISSING |
+| monitor-archive | 12 — IDEA 2 Real UI Demonstration | image | screenshots/idea2/archive.png | 16:9 | 1920×1080 minimum | Show an actual playable clip, provenance and archive controls. Redact filenames or identities if needed. | REAL | MISSING |
+| monitor-alert | 12 — IDEA 2 Real UI Demonstration | image | screenshots/idea2/alert.png | 16:9 | 1920×1080 minimum | Show a real recorded event or approved Telegram alert. Remove phone numbers, chat IDs, bot tokens and faces without consent. | REAL | MISSING |
+| equipment-setup | 05 — Actual Hardware & Network Setup | image | hardware/equipment-setup.png | 3:4 | 3072×4096 original | Original Figure 3.6-12 installation photograph. Evidence of physical equipment only. | REAL | AVAILABLE |
+| lan-cable-switch | 05 — Actual Hardware & Network Setup | image | hardware/lan-cable-switch.png | 4:3 | 4096×3072 original | Original Figure 3.6-13 cabling photograph. Not proof of speed, VLAN or reachability. | REAL | AVAILABLE |
+| security-zap | 17 — Security Assessment Findings | image | screenshots/idea3/zap-passive.png | 16:9 | 1920×1080 minimum | Owner-approved redacted ZAP summary, linked to §4.6.3; preserve alert-type scope. | REAL | MISSING |
+| security-burp | 17 — Security Assessment Findings | image | screenshots/idea3/burp-session-rbac.png | 16:9 | 1920×1080 minimum | Actual redacted HTTP status evidence from §4.6.4. Hide cookies, tokens and personal data. | REAL | MISSING |
+| security-canary | 17 — Security Assessment Findings | image | screenshots/idea3/canary-integrity.png | 16:9 | 1920×1080 minimum | Original 65-byte SHA-256/cmp result from §4.6.5 with private paths removed. | REAL | MISSING |
+| security-tls | 17 — Security Assessment Findings | image | screenshots/idea3/tls-exposure.png | 16:9 | 1920×1080 minimum | Original protocol and limited-port evidence from §4.6.7–4.6.8; redact private addresses. | REAL | MISSING |
+| security-gitleaks | 17 — Security Assessment Findings | image | screenshots/idea3/gitleaks-redacted.png | 16:9 | 1920×1080 minimum | Redacted current-source summary from §4.6.6 without potential secret values. | REAL | MISSING |
+| idea1-poster | 10 — IDEA 1 Real UI Demonstration | image | screenshots/idea1/demo-poster.png | 16:9 | 1920×1080 minimum | Real redacted still from the forthcoming Drive recording; used in print and before playback. | REAL | MISSING |
+| idea2-poster | 12 — IDEA 2 Real UI Demonstration | image | screenshots/idea2/demo-poster.png | 16:9 | 1920×1080 minimum | Real redacted still from the forthcoming Monitor recording; used in print and before playback. | REAL | MISSING |
+| idea1-demo | 10 — IDEA 1 Real UI Demonstration | video | videos/idea1/idea1-demo.mp4 | 16:9 | 1920×1080, 30 fps, H.264/AAC | An owner-approved screen recording of AEGIS Drive. Use a short continuous walkthrough with no credentials or personal data. | REAL | MISSING |
+| idea2-demo | 12 — IDEA 2 Real UI Demonstration | video | videos/idea2/idea2-demo.mp4 | 16:9 | 1920×1080, 30 fps, H.264/AAC | An owner-approved screen recording of AEGIS Monitor. Use a short continuous walkthrough with no credentials or personal data. | REAL | MISSING |

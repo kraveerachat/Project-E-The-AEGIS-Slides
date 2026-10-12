@@ -1,49 +1,38 @@
-# Implementation verification
+# V3 verification - 13 October 2026
 
-Verified locally on 11 October 2026 with Windows, Node 24.14, Vite and installed Google Chrome. These are frontend checks, not new AEGIS system tests.
+## Executed gates
 
-## Verified acceptance checklist
+| Check | Verified result |
+|---|---|
+| npm run check | PASS: 18 ordered scenes, 875 seconds (14:35), 24 asset records, 19 intentional missing real assets; all bilingual source/diagram records resolve |
+| npm run build | PASS: Vite static dist build; no backend or environment variables required |
+| PLAYWRIGHT_PORT=5193 npm test | PASS: 20 tests, 39.7 seconds, installed Chrome on Windows |
+| Final capture-v3 run | PASS: 36 desktop TH/EN scene captures; no detected footer overlap or horizontal clipping; six mobile captures and two intermediate captures |
+| Original hardware copy | PASS: both file hashes match the owner originals; 3072×4096 and 4096×3072 |
+| Independent design/a11y reviews | Material findings resolved: misleading methodology checks removed; native video Tab traversal preserved; source errors exit focus; mobile table headers retained |
 
-- [x] Exactly 17 scenes, matching the requested order.
-- [x] IDEA 1 and IDEA 2 contain substantive Round 11 content and scoped historical results.
-- [x] Editable report section references and speaker notes on every scene.
-- [x] IDEA 3 and unverified integration explicitly marked pending.
-- [x] Both original logos included; dimensions and RGBA pixels compared against owner originals and identical. Provenance text metadata was added to the copies.
-- [x] Warm cream / purple / royal blue / coral reference direction, asymmetric compositions and monument illustration implemented.
-- [x] Horizontal scene transitions, reversed navigation, cover entrance, card reveals, Flip navigation, decorative parallax, SVG paths and hover/focus behavior.
-- [x] Reduced-motion and explicit pause handling; repeated navigation input bounded.
-- [x] Keyboard arrows, chapter links, scene chooser, F/fullscreen and Escape verified in Chrome.
-- [x] 1920×1080 scene framing; 1440×900 letterboxed view captured.
-- [x] All 17 scenes reflow without horizontal overflow at 390×844. Mobile technical diagrams expose readable node/relationship lists.
-- [x] All screenshot gallery choices work; missing originals render stable placeholders.
-- [x] Unavailable files marked AVAILABLE fall back for both screenshot and video, without broken media controls.
-- [x] `npm run check` passed (strict TypeScript, sources, timing, manifest and available file checks).
-- [x] `npm run build` passed; static `dist` output generated.
-- [x] Seven browser tests passed together, including the unavailable-media fallback case.
-- [x] Batched axe WCAG A/AA checks on all 17 desktop scenes returned no violations. Automated checks do not establish complete accessibility conformance.
-- [x] Independent Impeccable reviewer: **ship**, scoped to six scored fixes; diagram labels, footer separation, contrast and heading spacing resolved. Chapter identifiers retained under the explicit approved visual brief.
-- [x] Impeccable detector ran once with no findings.
-- [x] Asset provenance scan: zero missing entries for the three public branding/generated rasters.
-- [x] Application-source scan found no runtime Windows paths, private IPv4 addresses or common credential signatures. Source documents and local report extraction are ignored.
-- [x] No production backend/network access, mutation, migration or deployment performed.
-- [x] Vercel build/output settings and deployment instructions prepared.
+The final browser suite covers all scene renders/source panels, current-scene language persistence, exact student identities, keyboard/chapter/chooser/fullscreen controls, forward/reverse and rapid input, photo inspection and fallback, gallery selection, mobile reflow and unavailable browser storage. The runtime content scan rejects private IPv4 addresses, local runtime paths, common credential signatures and obsolete project descriptions.
 
-## Remaining checks and owner inputs
+## Media and accessibility
 
-- [ ] Supply and approve 14 actual screenshots and 3 actual videos (see ASSET_REQUESTS.md).
-- [ ] Verify real video playback, audio/captions and camera-subject publication permission after assets arrive.
-- [ ] Supply verified IDEA 3 implementation, hardware and response evidence; update claims and source references accordingly.
-- [ ] Rehearse/record the narration and media within 15 minutes. Current editable plan is 14:20.
-- [ ] Physical device checks, Safari/Firefox checks and manual screen-reader assessment. Current browser evidence is Chrome desktop/mobile viewport emulation.
-- [ ] Human review, merge and separate public deployment authorization.
-- [ ] GitHub CI workflow execution on the published Draft PR (configured; local results above do not imply a completed remote CI run).
+- Real hardware originals load and open with Enter and synthesized Chromium touch input. Escape closes the native photo/evidence dialogs and restores focus. Missing photos keep their frames.
+- A neutral test-only H.264 clip verifies actual browser decoding, playback expansion, native control Tab traversal, pause/exit, end return without scene advance, source-failure cleanup and print placeholder. The test clip is outside public assets and is not an AEGIS demonstration.
+- Expanded playback makes background controls inert. Native media controls may consume their own keys; the visible Return to scene control always exits. Escape is verified when an application control has focus.
+- Representative TH/EN axe checks found no serious or critical violations. Mobile table column headers remain in the accessibility tree. New diagram selection and photo controls have visible focus and semantic state.
+- Reduced motion disables the photo mask/slide choreography, hover zoom and decorative flow while preserving content and interactions.
 
-## Captures
+## Visual review
 
-`docs/screenshots/` contains the cover, overview, Drive features/demo, network, pending Security and mobile cover. These are presentation-site captures, not real AEGIS UI evidence.
+The final 1920×1080 contact sheets were inspected in both languages. Cover identity, original marks/artwork, photo frames/captions, diagrams, server boundaries, tables, demo frames, findings states and conclusion preserve the approved Aurora Editorial direction. Required review screenshots for Cover, Network, Hardware, Server, Access, both Demos, Findings and Conclusion are in docs/screenshots/v3/ for TH and EN.
 
-Full local captures are generated by `scripts/capture-review.mjs`; `.impeccable/review/checks.json` stores all-scene overflow and axe findings. The final review batch returned an empty issue list. Large local traces/reports are ignored.
+The mechanical Impeccable scan returned 633 token-ramp advisories (380 type, 192 color, 61 radius) and one gradient-text warning. These are not a clean-detector result: the source retains the approved presentation typography, palette, panel radii and gradient headings. They were reviewed against the pinned visual brief and do not justify replacing its design. The isolated layout scan returned no findings; real layout defects found by browser bounds were corrected and the final capture returned no overflow findings.
 
-## Performance / runtime scope
+## Remaining owner checks
 
-Production bundle: approximately 401 kB JavaScript (131 kB gzip), 73 kB CSS (18 kB gzip), plus locally bundled fonts and the decorative raster. No external font calls, analytics, credentials or private service dependencies. Assets are static; real media are not downloaded while marked missing. No field performance or Core Web Vitals score is claimed.
+- Supply 10 actual application screenshots, 5 approved/redacted assessment captures, 2 posters and 2 MP4 recordings. See ASSET_REQUESTS.md and docs/ASSET_MANIFEST.md.
+- Recheck playback/volume/captions with the actual owner recordings. The neutral clip verifies the component, not the future recording content or codecs.
+- Rehearse on the recording laptop/projector within 14:35 plus the 25-second buffer. No full narration recording or physical mobile-device test was performed.
+- Confirm the separate grading images/PROMPT v2 rubric variant when supplied; final report §4.9 provided the available mapping.
+- Authorize deployment separately. No production system, real security environment or Vercel Production deployment was changed.
+
+Existing 17-page PDFs in exports are earlier review exports. They are excluded from Git and were not regenerated by this website update.

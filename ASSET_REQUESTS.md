@@ -1,56 +1,54 @@
-# Original AEGIS media requested
+# Original AEGIS media requests - V3
 
-The layout is complete without these files. Keep missing entries marked `MISSING`; the site shows designed placeholders. Never use generated or reconstructed UI as actual system evidence.
+The 18-scene layout works with missing media. Keep each entry MISSING until an approved original file is ready. The hardware photographs and both original logos are already available. IDEA 3 is an assessment and has no independent application/video demonstration.
 
-## How to insert an asset
+## Insert media
 
-1. Place the approved file at the path below, relative to the repository root.
-2. In `src/data/assets.ts`, change that asset's status to `AVAILABLE`. For screenshots created by the helper, add a status override to the individual entry or add a `status` argument with its default kept `MISSING`. Do not change all screenshot defaults at once.
+1. Add the approved file at the exact path below.
+2. Change only that record to AVAILABLE in src/data/assets.ts. Helper-created records can be overridden as `{ ...screenshot(...), status: 'AVAILABLE' }` or `{ ...video(...), status: 'AVAILABLE' }`. Keep other records MISSING.
+3. Run npm run check, npm run build and npm test.
 
-The manifest centralizes IDs, intended scenes, type, filename, ratio, resolution, purpose, source category and status. `REPLACE` continues to show a placeholder. Incorrect/missing AVAILABLE images or videos fall back to a labeled error placeholder. Run `npm run check`, `npm run build` and `npm test` after replacing assets.
+Optional captions: place a VTT beside the recording and set that video's captions field to its path relative to public/assets. Posters have separate manifest IDs; change their status when supplied. No component changes are needed.
 
-## Capture standard
+## Capture standard and recording plan
 
-Screenshots: PNG, **1920×1080 minimum**, **16:9**; preserve the real application's appearance. Frames use `object-fit: contain`, so other ratios letterbox instead of cropping. Videos: **1920×1080, 30 fps, H.264 MP4**, optional AAC audio. Keep each walkthrough short enough for its scene's narration budget. Supply `demo.en.vtt` captions beside each video when speech/audio conveys information; update the manifest if captions use another language.
+PNG screenshots/posters: 16:9, 1920×1080 minimum. MP4: H.264, 1920×1080, 30 fps, optional AAC audio. Native controls support play/pause, seeking, volume and fullscreen. Playback enters Presentation Video Mode, returns on end/exit and never advances the scene automatically. Print uses the approved poster or a labeled static frame.
 
-Use an approved demonstration account and non-sensitive sample files. Remove credentials, active links/tokens, internal addresses, private device names, student IDs, chat IDs and unauthorized faces. Redaction is appropriate; fabricated detections or outcome labels are not.
+Both demonstrations have a 90-second editing slot:
+- IDEA 1: Dashboard → Files → Private Vault → Secure Shares → Revoke.
+- IDEA 2: Operator Live → Detection → SOC Passive → Archive → Telegram / Logout.
 
-## IDEA 1 — Drive, scene 09
+These are prepared editing sequences, not claims that every operation completes live in 90 seconds. Show actual authorized behavior. Redact cookies, credentials, active links/tokens, internal addresses, private device names, chat IDs and unapproved personal/face data. Preserve the test conditions and outcome. Never reconstruct an interface or generate a hardware photograph as evidence.
 
-| Asset ID | File to provide | Actual state to capture |
-|---|---|---|
-| drive-dashboard | `public/assets/screenshots/idea1/dashboard.png` | Authenticated login/dashboard overview. A separate login capture may be added later. |
-| drive-files | `public/assets/screenshots/idea1/files.png` | Folders, file list and a completed upload using harmless filenames. |
-| drive-vault | `public/assets/screenshots/idea1/private-vault.png` | Real Private Vault lock/unlock interface; no passphrase or private contents. |
-| drive-shares | `public/assets/screenshots/idea1/secure-sharing.png` | Password/expiry/revocation settings; redact active share links. |
-| drive-backup | `public/assets/screenshots/idea1/storage-backup.png` | Actual manual backup/restore or access-control view. Do not imply scheduled backup or installed RAID. |
-| idea1-demo | `public/assets/videos/idea1/demo.mp4` | File management → Vault → create/revoke a controlled share. |
+## Missing files (19)
 
-## IDEA 2 — Monitor, scene 12
+| Asset ID | Intended scene | File to provide | Original capture needed |
+|---|---|---|---|
+| drive-dashboard | 10 — IDEA 1 Real UI Demonstration | `public/assets/screenshots/idea1/dashboard.png` | Show the actual authenticated Drive overview using a sanitized demonstration account. Capture login separately if desired. |
+| drive-files | 10 — IDEA 1 Real UI Demonstration | `public/assets/screenshots/idea1/files.png` | Show the real file list, folders and completed upload state. Use non-sensitive sample filenames. |
+| drive-vault | 10 — IDEA 1 Real UI Demonstration | `public/assets/screenshots/idea1/private-vault.png` | Show the actual Vault interface and its lock/unlock state without revealing passphrases or private file content. |
+| drive-shares | 10 — IDEA 1 Real UI Demonstration | `public/assets/screenshots/idea1/secure-sharing.png` | Show password, expiry and revocation controls. Redact active share tokens and links. |
+| drive-backup | 10 — IDEA 1 Real UI Demonstration | `public/assets/screenshots/idea1/storage-backup.png` | Show the actual manual backup/restore or access-control screen. Do not imply a verified schedule or installed RAID. |
+| monitor-live | 12 — IDEA 2 Real UI Demonstration | `public/assets/screenshots/idea2/operator-live.png` | Show an approved camera stream with operator controls. Blur faces and private surroundings unless publication is authorized. |
+| monitor-detection | 12 — IDEA 2 Real UI Demonstration | `public/assets/screenshots/idea2/detection.png` | Show a real Authorized/Unknown detection state with permission to show the subject. No synthetic bounding boxes. |
+| monitor-soc | 12 — IDEA 2 Real UI Demonstration | `public/assets/screenshots/idea2/soc-monitoring.png` | Show actual SOC passive viewing with Node and logical camera identity; redact personal device names. |
+| monitor-archive | 12 — IDEA 2 Real UI Demonstration | `public/assets/screenshots/idea2/archive.png` | Show an actual playable clip, provenance and archive controls. Redact filenames or identities if needed. |
+| monitor-alert | 12 — IDEA 2 Real UI Demonstration | `public/assets/screenshots/idea2/alert.png` | Show a real recorded event or approved Telegram alert. Remove phone numbers, chat IDs, bot tokens and faces without consent. |
+| security-zap | 17 — Security Assessment Findings | `public/assets/screenshots/idea3/zap-passive.png` | Owner-approved redacted ZAP summary, linked to §4.6.3; preserve alert-type scope. |
+| security-burp | 17 — Security Assessment Findings | `public/assets/screenshots/idea3/burp-session-rbac.png` | Actual redacted HTTP status evidence from §4.6.4. Hide cookies, tokens and personal data. |
+| security-canary | 17 — Security Assessment Findings | `public/assets/screenshots/idea3/canary-integrity.png` | Original 65-byte SHA-256/cmp result from §4.6.5 with private paths removed. |
+| security-tls | 17 — Security Assessment Findings | `public/assets/screenshots/idea3/tls-exposure.png` | Original protocol and limited-port evidence from §4.6.7–4.6.8; redact private addresses. |
+| security-gitleaks | 17 — Security Assessment Findings | `public/assets/screenshots/idea3/gitleaks-redacted.png` | Redacted current-source summary from §4.6.6 without potential secret values. |
+| idea1-poster | 10 — IDEA 1 Real UI Demonstration | `public/assets/screenshots/idea1/demo-poster.png` | Real redacted still from the forthcoming Drive recording; used in print and before playback. |
+| idea2-poster | 12 — IDEA 2 Real UI Demonstration | `public/assets/screenshots/idea2/demo-poster.png` | Real redacted still from the forthcoming Monitor recording; used in print and before playback. |
+| idea1-demo | 10 — IDEA 1 Real UI Demonstration | `public/assets/videos/idea1/idea1-demo.mp4` | An owner-approved screen recording of AEGIS Drive. Use a short continuous walkthrough with no credentials or personal data. |
+| idea2-demo | 12 — IDEA 2 Real UI Demonstration | `public/assets/videos/idea2/idea2-demo.mp4` | An owner-approved screen recording of AEGIS Monitor. Use a short continuous walkthrough with no credentials or personal data. |
 
-| Asset ID | File to provide | Actual state to capture |
-|---|---|---|
-| monitor-live | `public/assets/screenshots/idea2/operator-live.png` | Operator live view with an approved real camera stream. |
-| monitor-detection | `public/assets/screenshots/idea2/detection.png` | Genuine Authorized/Unknown detection, with publication permission. |
-| monitor-soc | `public/assets/screenshots/idea2/soc-monitoring.png` | Actual passive SOC view and node/logical-camera identity. |
-| monitor-archive | `public/assets/screenshots/idea2/archive.png` | Playable real clip and archive controls/provenance. |
-| monitor-alert | `public/assets/screenshots/idea2/alert.png` | Actual recorded alert/event; remove Telegram chat IDs, bot tokens and personal information. |
-| idea2-demo | `public/assets/videos/idea2/demo.mp4` | Viewer demand → live detection → close clip → archive playback. |
+All missing assets are REAL. Wrong/missing AVAILABLE files fall back to labeled placeholders. Complete metadata (type, ratio, resolution, source and status) is in docs/ASSET_MANIFEST.md; the authoritative manifest remains src/data/assets.ts.
 
-## IDEA 3 — Security, scene 14
+## Available original hardware
 
-Supply these only after verifying the associated implementation. Adding media does not automatically change the chapter's pending status.
+- public/assets/hardware/equipment-setup.png - original Figure 3.6-12, 3072×4096.
+- public/assets/hardware/lan-cable-switch.png - original Figure 3.6-13, 4096×3072.
 
-| Asset ID | File to provide | Evidence needed |
-|---|---|---|
-| security-gui | `public/assets/screenshots/idea3/security-gui.png` | Actual Security GUI/Web UI. |
-| security-incident | `public/assets/screenshots/idea3/incident.png` | Actual detected incident and corresponding test case. |
-| security-response | `public/assets/screenshots/idea3/response.png` | Observed response, test method/date and limitations. |
-| security-hardware | `public/assets/screenshots/idea3/hardware.png` | Actual hardware/control evidence supported by testing. |
-| idea3-demo | `public/assets/videos/idea3/demo.mp4` | A verified detection-to-response walkthrough. |
-
-Update `sources.idea3`, `sources.integration`, the scene speaker notes and chapter copy when the new evidence is approved. Retain limitations that still apply.
-
-## Already available
-
-Original SUT emblem and AEGIS project mark are in `public/assets/branding/`, unchanged. Decorative monument artwork is in `public/assets/generated/` and labeled `GENERATED`; it is not a documentary photograph or system evidence. See `docs/ASSET_PROVENANCE.md`.
+Both copies retain the owner's original bytes. The main slide uses a documentary detail crop; inspection opens the full original. The photographs establish physical arrangement only. Speed, VLAN, port status and reachability rely on separate configuration/test evidence.
