@@ -6,13 +6,17 @@ async function loadData(path) {
   const output = stripTypeScriptTypes(readFileSync(path, 'utf8'))
   return import(`data:text/javascript;base64,${Buffer.from(output).toString('base64')}`)
 }
-const { scenes, sources, totalSeconds, project, driveFeatures } = await loadData('src/data/content.ts')
+const { scenes, sources, totalSeconds, project, driveFeatures, contentPhrases, networkFunctions, securityFindings } = await loadData('src/data/content.ts')
 const { assets } = await loadData('src/data/assets.ts')
 const { diagrams } = await loadData('src/data/diagrams.ts')
-const { thaiPhrases } = await loadData('src/i18n/th.ts')
+const { thaiPhrases: uiPhrases } = await loadData('src/i18n/th.ts')
+const thaiPhrases = {...uiPhrases,...contentPhrases}
 const errors = []
-if (scenes.length !== 17) errors.push(`Expected 17 scenes, got ${scenes.length}`)
-if (new Set(scenes.map(s => s.id)).size !== 17) errors.push('Duplicate scene IDs')
+const expectedSceneIds = ['cover','background','overview','network','hardware-setup','server-setup','access','network-features','drive-architecture','drive-demo','monitor-architecture','monitor-demo','network-results','performance','security-scope','security-methodology','security-findings','summary']
+if (JSON.stringify(scenes.map(s=>s.id)) !== JSON.stringify(expectedSceneIds)) errors.push('Scene order differs from the approved V3 structure')
+if (new Set(scenes.map(s => s.id)).size !== scenes.length) errors.push('Duplicate scene IDs')
+if (totalSeconds !== 875) errors.push(`Expected 14:35 speaking budget, got ${totalSeconds}s`)
+for (const id of ['drive-demo','monitor-demo']) if (scenes.find(s=>s.id===id)?.seconds !== 90) errors.push(`${id}: expected 90-second demo slot`)
 if (totalSeconds > 900) errors.push(`Speaking budget exceeds 15 minutes: ${totalSeconds}s`)
 for (const scene of scenes) {
   if (!scene.notes || !scene.sources.length) errors.push(`${scene.id}: missing notes or references`)
@@ -33,6 +37,9 @@ for (const [kind, diagram] of Object.entries(diagrams)) {
   for (const edge of diagram.edges) requireThai(edge.label, `diagram ${kind} edge`)
 }
 for (const feature of driveFeatures) for (const field of ['title','text','detail']) requireThai(feature[field], `Drive feature ${feature.title} ${field}`)
+for (const row of networkFunctions) for (const value of row) if (!/^(VLAN|Routing|UFW|Twingate|NGINX|Public Share)/.test(value)) requireThai(value,'network function')
+for (const finding of securityFindings) for (const field of ['title','result','next']) requireThai(finding[field],`security ${finding.status}`)
+if (project.fullTitle !== 'AEGIS: Local Data Center, Monitoring, Network Infrastructure and Security Assessment') errors.push('Official final-report title differs')
 for (const asset of assets.filter(asset => asset.source === 'REAL' && asset.id !== 'sut-logo' && asset.id !== 'aegis-logo')) requireThai(asset.label, `asset ${asset.id} label`)
 if (new Set(assets.map(a => a.id)).size !== assets.length) errors.push('Duplicate asset IDs')
 for (const asset of assets) {
@@ -45,6 +52,7 @@ for (const file of [...walk('src'), 'index.html']) {
   const content = readFileSync(file,'utf8')
   if (/C:\\Users|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(?:1[6-9]|2\d|3[01])\.\d+\.\d+/.test(content)) errors.push(`${file}: local path or internal address in public application source`)
   if (/(?:ghp_|sk_live_|AKIA)[A-Za-z0-9]{12,}/.test(content)) errors.push(`${file}: possible credential`)
+  if (/Round 11|Cyber-Physical|MQTT|ESP32|physical lockdown/i.test(content)) errors.push(`${file}: obsolete project description`)
 }
 if (errors.length) { console.error(errors.join('\n')); process.exit(1) }
 console.log(`Content check passed: ${scenes.length} scenes; ${Math.floor(totalSeconds/60)}m ${totalSeconds%60}s speaking budget; ${assets.length} asset records; ${assets.filter(a=>a.status==='MISSING').length} missing real media assets intentionally reserved.`)

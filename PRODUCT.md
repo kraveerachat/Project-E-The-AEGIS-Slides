@@ -11,19 +11,19 @@ Owner-requested React, TypeScript, Vite, GSAP, SVG and Lucide icons. Vercel buil
 Student presenters, their academic audience and reviewers at Suranaree University of Technology. Presenters record a guided presentation of no more than 15 minutes.
 
 ## Product Purpose
-Explain the AEGIS prototype through exactly 17 scenes, with traceable report content, interactive architecture diagrams, and replacement-ready media stages.
+Explain the AEGIS prototype through exactly 18 scenes, with traceable report content, interactive architecture diagrams, and replacement-ready media stages.
 
 ## Operating Context
 1920×1080 recording composition; keyboard and button navigation; fullscreen; smaller-screen reading mode. No production connections, authentication, private backend, or external API is required.
 
 ## Capabilities and Constraints
-IDEA 1 is AEGIS Drive. IDEA 2 is AEGIS Monitor. IDEA 3 is AEGIS Cyber-Physical Security and remains pending evidence. Reported tests are historical findings from Round 11, not new tests or production guarantees. Application screenshots and recordings are owner-supplied later.
+IDEA 1 is AEGIS Drive. IDEA 2 is AEGIS Monitor. IDEA 3 is Network and Web Application Security Assessment. The final report supersedes earlier drafts. Assessor and development-team evidence remain separate. The speaking plan is 14:35 including two 90-second demo slots. Application screenshots and recordings are owner-supplied later.
 
 ## Brand Commitments
 Three owner-approved images establish warm cream, navy, violet/royal blue, coral and occasional lime, oversized type, asymmetric editorial panels and geometric arcs. Preserve the two supplied original logo files. Decorative generated artwork is not evidence.
 
 ## Evidence on Hand
-AEGIS_Report_Round11_Column_Alignment_Final.docx, read locally and not redistributed. Editable section references accompany the content. The report supplies the official title and Thai student names; the owner supplied the exact English spellings and student IDs for this presentation. Internal IP addresses, device hostnames, tokens and private endpoints remain excluded from public content. Real application screenshots/videos are missing.
+The_AEGIS_Project-Final.pdf (180 pages), read locally and not redistributed. Two owner-supplied original equipment/cabling photographs are included unchanged. Editable section references accompany the content. The report supplies the official title and Thai student names; the owner supplied the exact English spellings and student IDs for this presentation. Internal IP addresses, device hostnames, tokens and private endpoints remain excluded from public content. Real application screenshots/videos are missing.
 
 ## Product Principles
 - Explain system boundaries before features.

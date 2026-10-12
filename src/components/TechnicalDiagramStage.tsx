@@ -9,9 +9,9 @@ function pathBetween(a: DiagramNode, b: DiagramNode) {
   const y1 = a.y + 44, y2 = b.y - 44
   return `M${a.x},${y1} C${a.x},${(y1+y2)/2} ${b.x},${(y1+y2)/2} ${b.x},${y2}`
 }
-export function TechnicalDiagramStage({ kind, compact = false }: { kind: 'network' | 'drive' | 'monitor'; compact?: boolean }) {
+export function TechnicalDiagramStage({ kind, compact = false }: { kind: 'network' | 'drive' | 'monitor' | 'security'; compact?: boolean }) {
   const diagram = diagrams[kind]
-  const [selected, setSelected] = useState(kind === 'network' ? 'nas' : kind === 'drive' ? 'api' : 'engine')
+  const [selected, setSelected] = useState(kind === 'network' ? 'nas' : kind === 'drive' ? 'api' : kind === 'monitor' ? 'engine' : 'session')
   const node = diagram.nodes.find(n => n.id === selected)!
   const arrowId = useId().replace(/:/g, '')
   const viewHeight = kind === 'network' ? 380 : 350
@@ -19,7 +19,7 @@ export function TechnicalDiagramStage({ kind, compact = false }: { kind: 'networ
     <div className="diagram-meta"><span><Icon name="network" size={21} />{diagram.label}</span><span>SELECT A NODE TO EXPLORE</span></div>
     <svg className="technical-diagram" viewBox={`0 0 1200 ${viewHeight}`} role="group" aria-label={`${diagram.label}. Reported connections are solid; reserved integration is dashed.`}>
       <defs><marker id={arrowId} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10" fill="currentColor" /></marker></defs>
-      {diagram.edges.map((edge, i) => { const a = diagram.nodes.find(n => n.id === edge.from)!, b = diagram.nodes.find(n => n.id === edge.to)!, d = pathBetween(a,b); return <g key={`${edge.from}-${edge.to}`} className={edge.planned ? 'planned-connection' : 'reported-connection'}>
+      {diagram.edges.map((edge, i) => { const a = diagram.nodes.find(n => n.id === edge.from)!, b = diagram.nodes.find(n => n.id === edge.to)!, d = pathBetween(a,b); return <g key={`${edge.from}-${edge.to}`} className={`${edge.planned ? 'planned-connection' : 'reported-connection'} ${edge.from === selected || edge.to === selected ? 'selected-connection' : ''}`}>
         <path d={d} className="diagram-edge" markerEnd={`url(#${arrowId})`} />
         {!edge.planned && <path d={d} className="diagram-flow" style={{ animationDelay: `${i * -.6}s` }} />}
         {edge.label && <text className="edge-label" x={(a.x+b.x)/2} y={(a.y+b.y)/2 - (Math.abs(a.y-b.y)<60 ? edge.label.length > 20 ? 62 : 17 : 0)} textAnchor="middle">{edge.label}</text>}
