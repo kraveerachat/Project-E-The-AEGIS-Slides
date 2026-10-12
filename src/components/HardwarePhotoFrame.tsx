@@ -1,4 +1,5 @@
 import { useId, useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
 import { assetById, assetUrl } from '../data/assets'
 import { Icon } from './Icons'
 import { MissingAssetPlaceholder } from './MediaFrames'
@@ -9,9 +10,11 @@ export function HardwarePhotoFrame({ assetId }: { assetId: string }) {
   const dialog = useRef<HTMLDialogElement>(null)
   const titleId = useId()
   const available = asset.status === 'AVAILABLE' && !failed
-  return <figure className="hardware-photo" data-asset-id={assetId}>
+  const width = assetId === 'equipment-setup' ? 3072 : 4096
+  const height = assetId === 'equipment-setup' ? 4096 : 3072
+  return <figure className="hardware-photo" data-asset-id={assetId} style={{ '--photo-ratio': width / height } as CSSProperties}>
     <button className="hardware-photo-button" onClick={() => dialog.current?.showModal()} disabled={!available} aria-label={`Inspect ${asset.label}`}>
-      <span className="hardware-photo-viewport">{available ? <img className="hardware-photo-image" src={assetUrl(asset)} alt={asset.alt} width={assetId === 'equipment-setup' ? 3072 : 4096} height={assetId === 'equipment-setup' ? 4096 : 3072} onError={() => setFailed(true)} /> : <MissingAssetPlaceholder asset={asset} failed={failed} />}</span>
+      <span className="hardware-photo-viewport">{available ? <img className="hardware-photo-image" src={assetUrl(asset)} alt={asset.alt} width={width} height={height} onError={() => setFailed(true)} /> : <MissingAssetPlaceholder asset={asset} failed={failed} />}</span>
       {available && <span className="photo-inspect"><Icon name="fullscreen" size={20} /><span>Inspect original photograph</span></span>}
     </button>
     <figcaption><strong>{asset.label}</strong><span>Original owner photograph</span></figcaption>
