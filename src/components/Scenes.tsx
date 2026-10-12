@@ -1,7 +1,6 @@
 import { driveFeatures, formatTime, networkFunctions, project, securityFindings, totalSeconds } from '../data/content'
-import { driveGallery, monitorGallery } from '../data/assets'
 import { Icon } from './Icons'
-import { AssessmentEvidenceReview, EvidencePanel, SystemScreenshotGallery, VideoInsertFrame } from './MediaFrames'
+import { AssessmentEvidenceReview, EvidencePanel, VideoInsertFrame } from './MediaFrames'
 import { HardwarePhotoFrame } from './HardwarePhotoFrame'
 import { TechnicalDiagramStage } from './TechnicalDiagramStage'
 import { useI18n } from '../i18n/I18nProvider'
@@ -46,7 +45,18 @@ function Network() {
   return <><Heading title="The network behind AEGIS." subtitle="Designed zones. Documented ports. Field observations kept separate." /><div className="network-layout"><TechnicalDiagramStage kind="network" /><aside className="network-sidebar"><div className="hardware-card reveal"><Icon name="router" size={48} /><h2>Router + managed switch</h2><p>RB750r2 · TL-SG105E<br />802.1Q tagged trunk</p></div><div className="port-list reveal"><h3>Four zones</h3>{[['10','Server','purple'],['20','Detector','coral'],['30','Management','blue'],['40','Reserved','muted']].map(([n,label,tone]) => <div key={n}><span className={`vlan-number tone-${tone}`}>{n}</span><span>{label}</span></div>)}</div><p className="small-note">Ports 3 and 4 were Link Down during the field check. VLAN membership does not prove reachability.</p></aside></div></>
 }
 function Hardware() {
-  return <><Heading title="Actual Hardware & Network Setup" subtitle="From Network Design to Physical Implementation" /><div className="hardware-story"><div className="hardware-main-photo"><HardwarePhotoFrame assetId="equipment-setup" /></div><div className="hardware-support"><HardwarePhotoFrame assetId="lan-cable-switch" /><div className="equipment-callouts">{[['router','MikroTik hEX lite RB750r2','Edge router'],['network','TP-Link TL-SG105E','Managed switch'],['server','Beelink Mini S','Ubuntu / NAS host']].map(([icon,title,role],i) => <div className="hardware-label" key={title}><span>0{i+1}</span><Icon name={icon} size={28} /><div><strong>{title}</strong><small>{role}</small></div></div>)}</div></div></div><div className="photo-evidence-band"><span className="physical-indicator" aria-hidden="true" /><p>Physical installation evidence. Speed, VLAN and reachability require configuration and tests.</p><Reference>§3.6.3 · Fig. 3.6-12 / 3.6-13</Reference></div></>
+  return <>
+    <Heading title="Actual Hardware & Network Setup" subtitle="From Network Design to Physical Implementation" />
+    <div className="hardware-story">
+      <div className="hardware-main-photo"><HardwarePhotoFrame assetId="equipment-setup" /></div>
+      <div className="hardware-support"><HardwarePhotoFrame assetId="lan-cable-switch" /></div>
+    </div>
+    <div className="equipment-callouts" role="group" aria-label="Installed equipment">
+      {[['router','MikroTik hEX lite RB750r2','Router'],['network','TP-Link TL-SG105E','Managed switch'],['server','Beelink Mini S','Ubuntu / NAS Server']].map(([icon,title,role],i) =>
+        <div className="hardware-label" key={title}><span>0{i+1}</span><Icon name={icon} size={28} /><div><strong>{title}</strong><small>{role}</small></div></div>)}
+    </div>
+    <div className="photo-evidence-band"><span className="physical-indicator" aria-hidden="true" /><p>Physical installation evidence. Speed, VLAN and reachability require configuration and tests.</p><Reference>§3.6.3 · Fig. 3.6-12 / 3.6-13</Reference></div>
+  </>
 }
 function ServerSetup() {
   return <><Heading title="One host." accent="Separate service boundaries." subtitle="Beelink Mini S · Ubuntu Server · persistent data beyond containers" /><div className="server-layout"><section className="server-foundation reveal"><div className="server-host"><span className="nas-icon"><Icon name="server" size={83} /></span><div><h2>Ubuntu / NAS</h2><p>Shared compute and storage infrastructure</p></div></div><div className="server-services">{[['secure','HUB / NGINX','HTTPS entry and routing'],['files','AEGIS Drive','File and policy boundary'],['camera','AEGIS Monitor','Live and archive boundary'],['database','PostgreSQL','Separate application databases']].map(([icon,title,text]) => <article key={title}><Icon name={icon} size={32} /><h3>{title}</h3><p>{text}</p></article>)}</div><div className="storage-boundary"><Icon name="storage" size={32} /><div><strong>Persistent volumes and mounts</strong><p>Database, Drive files and Monitor clips keep separate storage roles.</p></div></div><div className="server-networks"><Tag>Macvlan · LAN attachment</Tag><Tag tone="blue">Bridge · container communication</Tag></div></section><aside className="server-side"><EvidencePanel title="Connector stays separate"><p>Twingate runs outside the core application Compose stack.</p></EvidencePanel><EvidencePanel title="Recovery evidence"><p>2 manual backup rounds and 2 isolated restore rounds are reported.</p></EvidencePanel><EvidencePanel title="Resilience remains limited" status="limited"><p>No installed RAID 1. Scheduled backup execution remains unverified.</p></EvidencePanel></aside></div><Reference>§3.6.4–3.6.6 · §4.2.1–4.2.9</Reference></>
@@ -73,8 +83,34 @@ function Architecture({idea}:{idea:'drive'|'monitor'}) {
 }
 function Demo({idea}:{idea:'idea1'|'idea2'}) {
   const drive = idea === 'idea1'
-  const sequence = drive ? [['monitor','Dashboard'],['folder','Files'],['vault','Private Vault'],['share','Secure Shares'],['restore','Revoke']] : [['camera','Operator Live'],['detection','Detection'],['users','SOC Passive'],['archive','Archive'],['alert','Telegram / Logout']]
-  return <><Heading title={drive?'Inside AEGIS Drive.':'From live view to a traceable event.'} subtitle="90-second prepared recording · actual authorized behavior" /><div className="demo-layout"><SystemScreenshotGallery ids={drive?driveGallery:monitorGallery} /><div className="demo-side"><VideoInsertFrame assetId={`${idea}-demo`} /><div className="demo-sequence reveal"><h2>The demonstration path</h2>{sequence.map(([icon,label],i) => <div key={label}><span>{i+1}</span><Icon name={icon} size={23} /><strong>{label}</strong></div>)}</div><p className="small-note">An intended editing sequence. Original media will replace the reserved frames.</p></div></div></>
+  const sequence = drive ? [
+    ['monitor','Dashboard','Open the authorized account.'],
+    ['folder','File Management','Browse folders and files.'],
+    ['vault','Private Vault','Open the protected vault.'],
+    ['share','Secure Shares','Review password and expiry.'],
+    ['restore','Share Revocation','Revoke a shared link.'],
+  ] : [
+    ['camera','Operator Live','Open the operator view.'],
+    ['detection','AI Detection','Review a detection event.'],
+    ['users','SOC Passive Monitoring','Review read-only monitoring.'],
+    ['archive','Recording Archive','Inspect archived clips.'],
+    ['alert','Telegram Alert / Logout','Review the alert, then sign out.'],
+  ]
+  return <>
+    <Heading title={drive?'Inside AEGIS Drive.':'From live view to a traceable event.'} subtitle="90-second prepared recording · actual authorized behavior" />
+    <div className={`demo-layout tone-${drive?'purple':'coral'}`}>
+      <VideoInsertFrame assetId={`${idea}-demo`} browserChrome />
+      <aside className="demo-side">
+        <div className="demo-sequence">
+          <h2>The demonstration path</h2>
+          <ol className="demo-timeline" role="list">{sequence.map(([icon,label,description],i) =>
+            <li className="demo-step" key={label}><span className="demo-step-number">{String(i+1).padStart(2,'0')}</span><Icon name={icon} size={24} /><div><h3>{label}</h3><p>{description}</p></div></li>)}
+          </ol>
+        </div>
+        <p className="demo-recording-note"><Icon name="play" size={20} /><span>Prepared sequence for the owner-supplied recording.</span></p>
+      </aside>
+    </div>
+  </>
 }
 function NetworkResults() {
   return <><Heading title="Network evidence." accent="Defined test paths." subtitle="Field tests · 12 October 2026 · Management VLAN to NAS" /><div className="matrix-layout"><div className="technical-table-wrap reveal"><table className="technical-table"><thead><tr><th scope="col">Test</th><th scope="col">Observed result</th><th scope="col">Scope</th></tr></thead><tbody>{[

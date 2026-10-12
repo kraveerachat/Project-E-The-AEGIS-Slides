@@ -72,15 +72,20 @@ test('rapid navigation is bounded and never leaves a hidden or stuck scene', asy
   await expect(page.locator('main')).toHaveAttribute('data-scene-id','overview')
 })
 
-test('all gallery placeholders and diagram interactions work without broken media', async ({ page }) => {
+test('demo placeholders, retained evidence gallery and diagram interactions work', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   for (const id of ['drive-demo','monitor-demo']) {
     await page.goto(`/#${id}`)
-    const buttons = page.locator('.gallery-tabs button')
-    for (let i=0; i<await buttons.count(); i++) { await buttons.nth(i).click(); await expect(buttons.nth(i)).toHaveAttribute('aria-pressed','true'); await expect(page.locator('.screenshot-frame .placeholder-state')).toHaveText('Awaiting actual system screenshot') }
+    await expect(page.locator('.gallery-tabs')).toHaveCount(0)
+    await expect(page.locator('.video-frame')).toHaveCount(1)
+    await expect(page.locator('.video-frame .placeholder-state')).toHaveText('Real recording coming next')
     await expect(page.locator('video')).toHaveCount(0)
     expect(await page.locator('img').evaluateAll(images => images.filter(i => !i.complete || !i.naturalWidth).map(i => i.src))).toEqual([])
   }
+  await page.goto('/#security-findings')
+  await page.getByRole('button', { name: 'Review evidence captures' }).click()
+  const buttons = page.locator('.assessment-dialog .gallery-tabs button')
+  for (let i=0; i<await buttons.count(); i++) { await buttons.nth(i).click(); await expect(buttons.nth(i)).toHaveAttribute('aria-pressed','true'); await expect(page.locator('.assessment-dialog .placeholder-state')).toHaveText('Awaiting actual system screenshot') }
   await page.goto('/#network')
   await page.getByRole('button', { name: 'Reserved port. VLAN 40 · Reserved' }).click()
   await expect(page.locator('.diagram-inspector')).toContainText('reserved')
@@ -122,8 +127,10 @@ test('unavailable files marked AVAILABLE fall back without broken image or video
     await route.fulfill({ response, body })
   })
   await page.goto('/#drive-demo')
-  await expect(page.locator('.screenshot-frame .placeholder-state')).toHaveText('Media unavailable · replace the supplied file')
   await expect(page.locator('.video-frame .placeholder-state')).toHaveText('Media unavailable · replace the supplied file')
   await expect(page.locator('video')).toHaveCount(0)
   await expect(page.locator('.screenshot-viewport img')).toHaveCount(0)
+  await page.goto('/#security-findings')
+  await page.getByRole('button', { name: 'Review evidence captures' }).click()
+  await expect(page.locator('.screenshot-frame .placeholder-state')).toHaveText('Media unavailable · replace the supplied file')
 })

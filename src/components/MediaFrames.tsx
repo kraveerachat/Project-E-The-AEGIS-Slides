@@ -37,7 +37,7 @@ export function SystemScreenshotGallery({ ids, initial = 0 }: { ids: string[]; i
   </div>
 }
 
-export function VideoInsertFrame({ assetId, compact = false }: { assetId: string; compact?: boolean }) {
+export function VideoInsertFrame({ assetId, compact = false, browserChrome = false }: { assetId: string; compact?: boolean; browserChrome?: boolean }) {
   const asset = assetById(assetId)
   const [failed, setFailed] = useState(false)
   const [focused, setFocused] = useState(false)
@@ -73,6 +73,7 @@ export function VideoInsertFrame({ assetId, compact = false }: { assetId: string
   const exit = () => { video.current?.pause(); setFocused(false); expand.current?.focus() }
   const mediaError = () => { setFailed(true); setFocused(false) }
   return <figure ref={frame} tabIndex={-1} className={`video-frame ${compact ? 'video-compact' : ''} ${focused ? 'media-focus' : ''}`} role={focused ? 'group' : undefined} aria-label={focused ? asset.label : undefined} data-asset-id={asset.id} data-local-keys>
+    {browserChrome && <div className="frame-chrome video-chrome"><div className="window-dots" aria-hidden="true"><i /><i /><i /></div><span>AEGIS · {asset.label}</span><span className="real-label">MP4 · 16:9</span></div>}
     {focused && <div className="video-focus-header"><strong>{asset.label}</strong><button onClick={exit} aria-label="Exit presentation video mode"><Icon name="close" size={23} /><span>Return to scene</span></button></div>}
     <div className="video-viewport">{available ? <video ref={video} controls playsInline preload="metadata" poster={posterAvailable ? assetUrl(poster!) : undefined} onPlay={() => setFocused(true)} onEnded={() => { setFocused(false); expand.current?.focus() }} onError={mediaError} aria-label={asset.alt}>
       <source src={assetUrl(asset)} type="video/mp4" onError={mediaError} />

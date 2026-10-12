@@ -43,7 +43,7 @@ test('original hardware photos load, inspect by keyboard, and reset on reverse n
   await page.keyboard.press('ArrowLeft')
   await expect(page.locator('main')).toHaveAttribute('data-scene-id','hardware-setup')
   await expect(page.locator('main')).toHaveAttribute('aria-busy','false')
-  await expect(page.locator('.hardware-photo-viewport').first()).toHaveCSS('clip-path','inset(0% round 24px)')
+  await expect(page.locator('.hardware-photo-viewport').first()).toHaveCSS('clip-path','inset(0%)')
 })
 
 test('missing original photos retain their frames without broken images', async ({ page }) => {

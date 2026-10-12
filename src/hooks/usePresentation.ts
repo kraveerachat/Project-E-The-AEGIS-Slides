@@ -52,9 +52,12 @@ export function usePresentation(reduced: boolean, reading: boolean) {
       if (index === 0) timeline.current.fromTo('.cover-art', { scale: 1.045, opacity: .5 }, { scale: 1, opacity: 1, duration: .8, ease: 'power2.out' }, 0)
       if (scenes[index].id === 'hardware-setup') {
         timeline.current
-          .fromTo('.hardware-main-photo .hardware-photo-viewport', { clipPath: 'inset(0% 100% 0% 0% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 24px)', duration: .68, ease: 'power3.out' }, .12)
+          .fromTo('.hardware-main-photo .hardware-photo-viewport', { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .68, ease: 'power3.out' }, .12)
           .fromTo('.hardware-support .hardware-photo', { x: 38, opacity: .4 }, { x: 0, opacity: 1, duration: .52, ease: 'power3.out' }, .28)
           .fromTo('.hardware-label', { y: 12, opacity: .35 }, { y: 0, opacity: 1, duration: .4, stagger: .08, ease: 'power3.out' }, .48)
+      }
+      if (scenes[index].id.endsWith('-demo')) {
+        timeline.current.fromTo('.demo-step', { y: 12, opacity: .35 }, { y: 0, opacity: 1, duration: .4, stagger: { amount: .2 }, ease: 'power3.out' }, .18)
       }
     }, element)
     return () => { context.revert(); timeline.current?.kill() }
