@@ -18,7 +18,7 @@ Public deployment requires separate owner authorization. This repository current
 
 - Run `npm ci`, `npm run check`, `npm run build`, and the browser suite.
 - Review all 17 scenes at 1920×1080 and fullscreen keyboard navigation in the recording browser.
-- Review uploaded screenshot/video content for credentials, internal addresses, active tokens and unauthorized personal details. Project members' names are intentionally included from the report as requested; student IDs are omitted.
+- Review uploaded screenshot/video content for credentials, internal addresses, active tokens and unauthorized personal details. The owner's supplied student IDs and bilingual names are intentionally visible on the cover and closing scene; avoid adding unrelated personal details in future media.
 - Keep missing assets labeled until originals are available; obtain approval for public use of supplied branding and media.
 - Check video play/pause, captions, playback seek and return navigation after real recordings arrive.
 - Rehearse narration and media within the 14:20 plan / 15-minute limit.

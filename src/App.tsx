@@ -5,9 +5,11 @@ import { chapters, formatTime, project, scenes, sources } from './data/content'
 import { SceneContent, PresentationBudget } from './components/Scenes'
 import { Icon } from './components/Icons'
 import { usePresentation, useReducedMotion, useStageScale } from './hooks/usePresentation'
+import { useI18n } from './i18n/I18nProvider'
 gsap.registerPlugin(Flip)
 
 export default function App() {
+  const { language, setLanguage, t } = useI18n()
   const reducedPreference = useReducedMotion()
   const { scale, narrow } = useStageScale()
   const [readerOverride, setReaderOverride] = useState<boolean | null>(null)
@@ -48,6 +50,7 @@ export default function App() {
 
   useEffect(() => { if (panel && !dialog.current?.open) dialog.current?.showModal(); else if (!panel && dialog.current?.open) dialog.current.close() }, [panel])
   useEffect(() => { if (!notice) return; const timer = window.setTimeout(() => setNotice(''), 6000); return () => window.clearTimeout(timer) }, [notice])
+  useEffect(() => { document.title = `${t(scene.title)} · AEGIS` }, [scene.title, t])
 
   useLayoutEffect(() => {
     const selected = nav.current?.querySelector<HTMLElement>(`[data-chapter="${activeChapter}"]`)
@@ -83,7 +86,7 @@ export default function App() {
         <footer className="presentation-footer">
           <div className="footer-identity"><span className="footer-rule" /><strong>AEGIS</strong><span className="footer-dots" aria-hidden="true"><i /><i /><i /></span></div>
           <div className="scene-status"><span className="scene-counter"><b>{String(index+1).padStart(2,'0')}</b><span>/ 17</span></span><div><span className="scene-name">{scene.id === 'cover' ? 'Opening' : scene.id === 'ending' ? 'Closing' : `${scene.number} · ${scene.title}`}</span><div className="scene-progress" aria-hidden="true"><span style={{ width: `${(index+1)/scenes.length*100}%` }} /></div></div></div>
-          <div className="utility-controls"><button onClick={() => setPanel('scenes')} aria-label="Open all 17 scenes" title="All scenes"><Icon name="menu" size={24} /></button><button onClick={() => setPanel('sources')} aria-label="Open report sources and speaker notes" title="Sources & speaker notes"><Icon name="book" size={24} /></button><button onClick={() => setReaderOverride(!reading)} aria-label={reading ? 'Switch to 16:9 presentation view' : 'Switch to reading view'} title={reading ? '16:9 view' : 'Reading view'}><Icon name={reading ? 'monitor' : 'layers'} size={24} /></button><button onClick={() => setMotionPaused(!motionPaused)} aria-label={motionPaused ? 'Resume decorative motion' : 'Pause decorative motion'} aria-pressed={motionPaused || reducedPreference} title={reducedPreference ? 'System reduced motion is enabled' : motionPaused ? 'Resume motion' : 'Pause motion'}><Icon name={motionPaused || reducedPreference ? 'play' : 'pause'} size={23} /></button><button onClick={() => void toggleFullscreen()} aria-label={fullscreen ? 'Exit fullscreen' : 'Enter fullscreen'} title="Fullscreen (F)"><Icon name="fullscreen" size={24} /></button></div>
+          <div className="utility-controls"><div className="language-switch" role="group" aria-label={t('Presentation language')}><button type="button" lang="th" aria-label={t('Thai language')} aria-pressed={language === 'th'} className={language === 'th' ? 'active' : ''} onClick={() => setLanguage('th')}>TH</button><span aria-hidden="true">|</span><button type="button" lang="en" aria-label={t('English language')} aria-pressed={language === 'en'} className={language === 'en' ? 'active' : ''} onClick={() => setLanguage('en')}>EN</button></div><button onClick={() => setPanel('scenes')} aria-label="Open all 17 scenes" title="All scenes"><Icon name="menu" size={24} /></button><button onClick={() => setPanel('sources')} aria-label="Open report sources and speaker notes" title="Sources & speaker notes"><Icon name="book" size={24} /></button><button onClick={() => setReaderOverride(!reading)} aria-label={reading ? 'Switch to 16:9 presentation view' : 'Switch to reading view'} title={reading ? '16:9 view' : 'Reading view'}><Icon name={reading ? 'monitor' : 'layers'} size={24} /></button><button onClick={() => setMotionPaused(!motionPaused)} aria-label={motionPaused ? 'Resume decorative motion' : 'Pause decorative motion'} aria-pressed={motionPaused || reducedPreference} title={reducedPreference ? 'System reduced motion is enabled' : motionPaused ? 'Resume motion' : 'Pause motion'}><Icon name={motionPaused || reducedPreference ? 'play' : 'pause'} size={23} /></button><button onClick={() => void toggleFullscreen()} aria-label={fullscreen ? 'Exit fullscreen' : 'Enter fullscreen'} title="Fullscreen (F)"><Icon name="fullscreen" size={24} /></button></div>
           <div className="navigation-controls"><button className="previous-button" onClick={() => goToIndex(index-1)} disabled={index === 0 || transitioning} aria-label="Previous scene"><Icon name="left" size={28} /><span>Previous</span></button><span className="nav-divider" /><button className="next-button" onClick={() => goToIndex(index+1)} disabled={index === scenes.length-1 || transitioning} aria-label="Next scene"><Icon name="right" size={30} /><span>Next</span></button></div>
         </footer>
       </div>

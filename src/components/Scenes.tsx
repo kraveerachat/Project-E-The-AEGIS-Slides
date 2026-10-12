@@ -4,6 +4,7 @@ import { driveGallery, monitorGallery, securityGallery } from '../data/assets'
 import { Icon } from './Icons'
 import { EvidencePanel, SystemScreenshotGallery, VideoInsertFrame } from './MediaFrames'
 import { TechnicalDiagramStage } from './TechnicalDiagramStage'
+import { useI18n } from '../i18n/I18nProvider'
 
 type SceneProps = { id: string; goTo: (id: string) => void }
 
@@ -20,6 +21,7 @@ function Wordmark({ small = false }: { small?: boolean }) {
 function Star({ className = '' }: { className?: string }) { return <svg className={`star ${className}`} viewBox="0 0 80 80" aria-hidden="true"><path d="M40 0C44 29 51 36 80 40C51 44 44 51 40 80C36 51 29 44 0 40C29 36 36 29 40 0Z" /></svg> }
 
 function Cover({ goTo }: Pick<SceneProps, 'goTo'>) {
+  const { language } = useI18n()
   return <div className="cover-layout">
     <div className="cover-art" aria-hidden="true"><img src="/assets/generated/monument-arcs.png" alt="" /><div className="cover-art-wash" /></div>
     <div className="cover-content"><div className="cover-wordmark reveal"><Wordmark /><Star className="cover-star" /></div>
@@ -27,7 +29,7 @@ function Cover({ goTo }: Pick<SceneProps, 'goTo'>) {
       <p className="cover-title-extension reveal">with Integrated IoT and Local Data Center</p>
       <div className="title-rule reveal" /><p className="presentation-label reveal">Final Project Presentation</p>
       <button className="primary-button reveal" onClick={() => goTo('background')}>Start presentation <span><Icon name="right" size={29} /></span></button>
-      <div className="student-members reveal"><span className="micro-label">PRESENTED BY</span><div lang="th">{project.members.map(name => <span key={name}>{name}</span>)}</div></div>
+      <div className="student-members reveal"><span className="micro-label">PRESENTED BY</span><div>{project.members.map(member => <span className="member-row" key={member.id}><b>{member.id}</b><span lang={language}>{member[language]}</span></span>)}</div></div>
     </div>
     <div className="cover-side-note" aria-hidden="true">TECHNOLOGY<br />PEOPLE<br />LOCAL CONTROL<span /></div>
     <div className="cover-caption">Illustrative artwork · based on the approved design reference</div>
@@ -110,7 +112,8 @@ function Summary() {
 }
 
 function Ending({ goTo }: Pick<SceneProps, 'goTo'>) {
-  return <div className="ending-layout"><div className="ending-art" aria-hidden="true"><img src="/assets/generated/monument-arcs.png" alt="" /></div><div className="ending-content"><Wordmark small /><h1 className="reveal">Thank you<span className="gradient-text">.</span></h1><p className="ending-subtitle reveal">Local control.<br />Clear boundaries.<br />Evidence-led engineering.</p><div className="ending-actions reveal"><button className="primary-button" onClick={() => goTo('overview')}>Explore the project <span><Icon name="right" /></span></button><button className="text-button" onClick={() => goTo('cover')}><Icon name="restore" size={23} />Back to the beginning</button></div><div className="ending-members reveal" lang="th">{project.members.map(name => <span key={name}>{name}</span>)}</div><span className="ending-university">{project.university}</span></div><Star className="ending-star" /><div className="ending-prompt">Questions & discussion</div></div>
+  const { language } = useI18n()
+  return <div className="ending-layout"><div className="ending-art" aria-hidden="true"><img src="/assets/generated/monument-arcs.png" alt="" /></div><div className="ending-content"><Wordmark small /><h1 className="reveal">Thank you<span className="gradient-text">.</span></h1><p className="ending-subtitle reveal">Local control.<br />Clear boundaries.<br />Evidence-led engineering.</p><div className="ending-actions reveal"><button className="primary-button" onClick={() => goTo('overview')}>Explore the project <span><Icon name="right" /></span></button><button className="text-button" onClick={() => goTo('cover')}><Icon name="restore" size={23} />Back to the beginning</button></div><div className="ending-members reveal">{project.members.map(member => <span className="member-row" key={member.id}><b>{member.id}</b><span lang={language}>{member[language]}</span></span>)}</div><span className="ending-university">{project.university}</span></div><Star className="ending-star" /><div className="ending-prompt">Questions & discussion</div></div>
 }
 
 export function SceneContent({ id, goTo }: SceneProps) {

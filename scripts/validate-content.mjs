@@ -6,8 +6,10 @@ async function loadData(path) {
   const output = stripTypeScriptTypes(readFileSync(path, 'utf8'))
   return import(`data:text/javascript;base64,${Buffer.from(output).toString('base64')}`)
 }
-const { scenes, sources, totalSeconds } = await loadData('src/data/content.ts')
+const { scenes, sources, totalSeconds, project, driveFeatures } = await loadData('src/data/content.ts')
 const { assets } = await loadData('src/data/assets.ts')
+const { diagrams } = await loadData('src/data/diagrams.ts')
+const { thaiPhrases } = await loadData('src/i18n/th.ts')
 const errors = []
 if (scenes.length !== 17) errors.push(`Expected 17 scenes, got ${scenes.length}`)
 if (new Set(scenes.map(s => s.id)).size !== 17) errors.push('Duplicate scene IDs')
@@ -16,6 +18,22 @@ for (const scene of scenes) {
   if (!scene.notes || !scene.sources.length) errors.push(`${scene.id}: missing notes or references`)
   for (const id of scene.sources) if (!sources[id]) errors.push(`${scene.id}: unknown reference ${id}`)
 }
+const expectedMembers = [
+  ['B6701635', 'กิตติภัทร์ จันทศิลา', 'Mr. Kittiphat Chanthasila'],
+  ['B6702861', 'นฤเบศ แสงประทุม', 'Mr. Narubet Saengprathum'],
+  ['B6703370', 'วีรฉัตร จินะปริวัตอาภรณ์', 'Mr. Veerachat Jinapariwataporn'],
+]
+if (JSON.stringify(project.members.map(({id,th,en}) => [id,th,en])) !== JSON.stringify(expectedMembers)) errors.push('Student names or IDs differ from owner-supplied values')
+const requireThai = (value, context) => { if (value && !Object.hasOwn(thaiPhrases,value)) errors.push(`${context}: missing Thai translation for ${value}`) }
+for (const scene of scenes) { requireThai(scene.title, `scene ${scene.id} title`); requireThai(scene.notes, `scene ${scene.id} note`) }
+for (const source of Object.values(sources)) { requireThai(source.title, `source ${source.id} title`); requireThai(source.note, `source ${source.id} note`) }
+for (const [kind, diagram] of Object.entries(diagrams)) {
+  requireThai(diagram.label, `diagram ${kind}`)
+  for (const node of diagram.nodes) for (const field of ['title','subtitle','detail']) requireThai(node[field], `diagram ${kind}/${node.id} ${field}`)
+  for (const edge of diagram.edges) requireThai(edge.label, `diagram ${kind} edge`)
+}
+for (const feature of driveFeatures) for (const field of ['title','text','detail']) requireThai(feature[field], `Drive feature ${feature.title} ${field}`)
+for (const asset of assets.filter(asset => asset.source === 'REAL' && asset.id !== 'sut-logo' && asset.id !== 'aegis-logo')) requireThai(asset.label, `asset ${asset.id} label`)
 if (new Set(assets.map(a => a.id)).size !== assets.length) errors.push('Duplicate asset IDs')
 for (const asset of assets) {
   for (const field of ['id','intendedScene','type','expectedFilename','aspectRatio','requiredResolution','purpose','source','status']) if (!asset[field]) errors.push(`${asset.id}: missing ${field}`)

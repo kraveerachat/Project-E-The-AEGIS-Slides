@@ -23,7 +23,7 @@ IDEA 1 is AEGIS Drive. IDEA 2 is AEGIS Monitor. IDEA 3 is AEGIS Cyber-Physical S
 Three owner-approved images establish warm cream, navy, violet/royal blue, coral and occasional lime, oversized type, asymmetric editorial panels and geometric arcs. Preserve the two supplied original logo files. Decorative generated artwork is not evidence.
 
 ## Evidence on Hand
-AEGIS_Report_Round11_Column_Alignment_Final.docx, read locally and not redistributed. Editable section references accompany the content. Official title and student names come from its cover. Student IDs, internal IP addresses, device hostnames, tokens and private endpoints are excluded from public content. Real application screenshots/videos are missing.
+AEGIS_Report_Round11_Column_Alignment_Final.docx, read locally and not redistributed. Editable section references accompany the content. The report supplies the official title and Thai student names; the owner supplied the exact English spellings and student IDs for this presentation. Internal IP addresses, device hostnames, tokens and private endpoints remain excluded from public content. Real application screenshots/videos are missing.
 
 ## Product Principles
 - Explain system boundaries before features.
@@ -33,4 +33,4 @@ AEGIS_Report_Round11_Column_Alignment_Final.docx, read locally and not redistrib
 - Keep presentation controls predictable and motion optional.
 
 ## Accessibility and Inclusion
-Semantic controls, visible focus, reduced motion, keyboard navigation, media controls and a reflowing reading mode.
+Semantic controls, visible focus, reduced motion, keyboard navigation, media controls and a reflowing reading mode. Thai is the default presentation language; English is immediately selectable and the selection persists when browser storage is available.
