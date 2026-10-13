@@ -9,6 +9,7 @@
 | `public/assets/hardware/equipment-setup.png` | REAL | Owner's unchanged original Figure 3.6-12. SHA-256: D7C206C5FCF818C653AA92734AFA92577CA1CEFE85EE0D7CE41CDDF322DEFDB9. |
 | `public/assets/hardware/lan-cable-switch.png` | REAL | Owner's unchanged original Figure 3.6-13. SHA-256: CE18A7F4FEAD4E0F6340AC018BBA3FCF2302404FCC2CCDA60D663170C2053AD7. |
 | `docs/screenshots/v3/*.png` | QA capture | Fresh Chrome captures of the 18-scene TH/EN presentation. Not system screenshots. |
+| `docs/screenshots/scene-19/*.png` | QA capture | Chrome captures of the new bilingual closing scene at 1920×1080. Not system screenshots. |
 | `tests/fixtures/playback.mp4` | Test-only fixture | Neutral color clip for actual browser decoding/playback checks. Outside public assets and never presented as AEGIS behavior. |
 
 The three approved reference images are owner-provided design authorities and remain outside the public repository. No stock assets or external image URLs are required at runtime.

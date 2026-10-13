@@ -1,5 +1,7 @@
 # V3 verification - 13 October 2026
 
+This records the original 18-scene V3 verification. The 19-scene closing update and its current checks are documented in [SCENE_19_QA.md](SCENE_19_QA.md).
+
 ## Executed gates
 
 | Check | Verified result |

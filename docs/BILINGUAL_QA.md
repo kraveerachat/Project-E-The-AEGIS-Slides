@@ -1,6 +1,6 @@
 # V3 bilingual QA
 
-The current 18-scene V3 implementation retains the existing TH/EN provider, local-storage preference, current scene/hash and selected interactive states. English is the source text; report titles, notes and source interpretations are paired with Thai beside their records. The UI dictionary supplies controls, captions, descriptions and findings.
+This section records the original 18-scene V3 bilingual pass. The later 19-scene closing update is checked in [SCENE_19_QA.md](SCENE_19_QA.md). The implementation retains the existing TH/EN provider, local-storage preference, current scene/hash and selected interactive states. English is the source text; report titles, notes and source interpretations are paired with Thai beside their records. The UI dictionary supplies controls, captions, descriptions and findings.
 
 Natural Thai keeps NAS, VLAN, Twingate, Cloudflare, Docker, TLS, RBAC, SHA-256 and assessment tools where appropriate. Student IDs and both owner-approved name spellings remain exactly on the cover. Verified numerical values and test conditions are unchanged between languages.
 

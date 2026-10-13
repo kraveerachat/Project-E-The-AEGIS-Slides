@@ -24,7 +24,7 @@ export default function App() {
   const nav = useRef<HTMLElement>(null)
   const indicator = useRef<HTMLSpanElement>(null)
   const stage = useRef<HTMLDivElement>(null)
-  const activeChapter = scene.chapter === 'closing' ? 'overview' : scene.chapter
+  const activeChapter = scene.id === 'thank-you' ? null : scene.chapter === 'closing' ? 'overview' : scene.chapter
 
   async function toggleFullscreen() {
     try {
@@ -39,7 +39,7 @@ export default function App() {
       if (event.altKey || event.ctrlKey || event.metaKey || event.repeat || panel || document.querySelector('dialog[open], .media-focus')) return
       const target = event.target as HTMLElement
       if (target.closest('input, textarea, select, video, [contenteditable="true"], [data-local-keys]')) return
-      if (event.key === 'ArrowRight' || event.key === 'PageDown') { event.preventDefault(); goToIndex(index + 1) }
+      if (event.key === 'ArrowRight' || event.key === 'PageDown') { event.preventDefault(); goToIndex(index === scenes.length - 1 ? 0 : index + 1) }
       else if (event.key === 'ArrowLeft' || event.key === 'PageUp') { event.preventDefault(); goToIndex(index - 1) }
       else if (event.key.toLowerCase() === 'f') { event.preventDefault(); void toggleFullscreen() }
       else if (event.key === 'Escape' && document.fullscreenElement) { void document.exitFullscreen().catch(() => setNotice('Use your browser control to exit fullscreen.')) }
@@ -77,7 +77,7 @@ export default function App() {
         <div className="ambient-shapes" aria-hidden="true"><div className="ambient-violet" /><div className="ambient-coral" /><div className="ambient-blue" /><div className="ambient-dots" /></div>
         <header className="masthead">
           <button className="university-brand" onClick={() => goTo('cover')} aria-label="Suranaree University of Technology — return to cover"><img src="/assets/branding/sut-standard.png" alt="SUT original emblem" width="78" height="98" /><span>Suranaree<br />University<br /><span>of Technology</span></span></button>
-          <nav className="chapter-nav" aria-label="Presentation chapters" ref={nav}><span className="nav-indicator" ref={indicator} aria-hidden="true" />{chapters.map(chapter => <button key={chapter.id} data-chapter={chapter.id} aria-current={activeChapter === chapter.id ? 'page' : undefined} onClick={() => goTo(chapter.scene)}>{chapter.label}</button>)}</nav>
+          <nav className="chapter-nav" aria-label="Presentation chapters" ref={nav}><span className={`nav-indicator${activeChapter ? '' : ' is-hidden'}`} ref={indicator} aria-hidden="true" />{chapters.map(chapter => <button key={chapter.id} data-chapter={chapter.id} aria-current={activeChapter === chapter.id ? 'page' : undefined} onClick={() => goTo(chapter.scene)}>{chapter.label}</button>)}</nav>
           <div className="masthead-label"><span className="masthead-line" /><p>FINAL PROJECT<br />PRESENTATION</p></div>
         </header>
         <main id="scene-content" ref={sceneRef} tabIndex={-1} className={`scene scene-${scene.id}`} data-scene-id={scene.id} aria-label={`Scene ${index+1} of ${scenes.length}: ${scene.title}`} aria-busy={transitioning}>
@@ -85,9 +85,9 @@ export default function App() {
         </main>
         <footer className="presentation-footer">
           <div className="footer-identity"><span className="footer-rule" /><strong>AEGIS</strong><span className="footer-dots" aria-hidden="true"><i /><i /><i /></span></div>
-          <div className="scene-status"><span className="scene-counter"><b>{String(index+1).padStart(2,'0')}</b><span>/ {scenes.length}</span></span><div><span className="scene-name">{scene.id === 'cover' ? 'Opening' : scene.id === 'ending' ? 'Closing' : `${scene.number} · ${scene.title}`}</span><div className="scene-progress" aria-hidden="true"><span style={{ width: `${(index+1)/scenes.length*100}%` }} /></div></div></div>
+          <div className="scene-status"><span className="scene-counter"><b>{String(index+1).padStart(2,'0')}</b><span>/ {scenes.length}</span></span><div><span className="scene-name">{scene.id === 'cover' ? 'Opening' : `${scene.number} · ${scene.title}`}</span><div className="scene-progress" aria-hidden="true"><span style={{ width: `${(index+1)/scenes.length*100}%` }} /></div></div></div>
           <div className="utility-controls"><div className="language-switch" role="group" aria-label={t('Presentation language')}><button type="button" lang="th" aria-label={t('Thai language')} aria-pressed={language === 'th'} className={language === 'th' ? 'active' : ''} onClick={() => setLanguage('th')}>TH</button><span aria-hidden="true">|</span><button type="button" lang="en" aria-label={t('English language')} aria-pressed={language === 'en'} className={language === 'en' ? 'active' : ''} onClick={() => setLanguage('en')}>EN</button></div><button onClick={() => setPanel('scenes')} aria-label={`Open all ${scenes.length} scenes`} title="All scenes"><Icon name="menu" size={24} /></button><button onClick={() => setPanel('sources')} aria-label="Open report sources and speaker notes" title="Sources & speaker notes"><Icon name="book" size={24} /></button><button onClick={() => setReaderOverride(!reading)} aria-label={reading ? 'Switch to 16:9 presentation view' : 'Switch to reading view'} title={reading ? '16:9 view' : 'Reading view'}><Icon name={reading ? 'monitor' : 'layers'} size={24} /></button><button onClick={() => setMotionPaused(!motionPaused)} aria-label={motionPaused ? 'Resume decorative motion' : 'Pause decorative motion'} aria-pressed={motionPaused || reducedPreference} title={reducedPreference ? 'System reduced motion is enabled' : motionPaused ? 'Resume motion' : 'Pause motion'}><Icon name={motionPaused || reducedPreference ? 'play' : 'pause'} size={23} /></button><button onClick={() => void toggleFullscreen()} aria-label={fullscreen ? 'Exit fullscreen' : 'Enter fullscreen'} title="Fullscreen (F)"><Icon name="fullscreen" size={24} /></button></div>
-          <div className="navigation-controls"><button className="previous-button" onClick={() => goToIndex(index-1)} disabled={index === 0 || transitioning} aria-label="Previous scene"><Icon name="left" size={28} /><span>Previous</span></button><span className="nav-divider" /><button className="next-button" onClick={() => goToIndex(index+1)} disabled={index === scenes.length-1 || transitioning} aria-label="Next scene"><Icon name="right" size={30} /><span>Next</span></button></div>
+          <div className="navigation-controls"><button className="previous-button" onClick={() => goToIndex(index-1)} disabled={index === 0 || transitioning} aria-label="Previous scene"><Icon name="left" size={28} /><span>Previous</span></button><span className="nav-divider" />{index === scenes.length-1 ? <button className="next-button home-button" onClick={() => goTo('cover')} disabled={transitioning} aria-label="Back to Home"><Icon name="home" size={29} /><span>Back to Home</span></button> : <button className="next-button" onClick={() => goToIndex(index+1)} disabled={transitioning} aria-label="Next scene"><Icon name="right" size={30} /><span>Next</span></button>}</div>
         </footer>
       </div>
     </div>

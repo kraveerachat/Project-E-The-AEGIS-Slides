@@ -75,6 +75,7 @@ button svg { flex-shrink: 0; }
 .chapter-nav button[aria-current] { color: white; }
 .chapter-nav button:hover:not([aria-current]) { background: #e9e3fa80; }
 .nav-indicator { position: absolute; background: var(--gradient); border-radius: 60px; box-shadow: 0 7px 17px -6px #652ce967; pointer-events: none; }
+.nav-indicator.is-hidden { visibility: hidden; }
 .masthead-label { display: flex; align-items: flex-start; gap: 22px; font-size: 13px; letter-spacing: 5px; line-height: 1.85; color: #6b6990; }
 .masthead-line { width: 155px; height: 1px; background: linear-gradient(90deg,#7652e4 55%,#cec6eb 55%); margin-top: 13px; position: relative; }
 .masthead-line::after { content: ''; position: absolute; right: -4px; width: 11px; height: 11px; border-radius: 50%; background: var(--purple); top: -5px; }
@@ -181,6 +182,7 @@ html[lang='th'] .presentation-mode .security-media .screenshot-viewport { height
 .navigation-controls { display: flex; align-items: center; gap: 25px; margin-left: 15px; }
 .navigation-controls button { border-radius: 50%; width: 61px; height: 61px; display: grid; place-items: center; position: relative; }
 .navigation-controls button > span { position: absolute; top: 66px; font-size: 13px; color: #453d61; }
+.navigation-controls .home-button > span { left: 50%; transform: translateX(-50%); white-space: nowrap; }
 .previous-button { background: #fffefa90; border: 1px solid #777093; }
 .next-button { background: var(--gradient); color: white; border: 0; box-shadow: 0 8px 19px -7px #6f3ce474; }
 .nav-divider { width: 1px; height: 52px; background: #c9c1da; }
@@ -342,6 +344,51 @@ html[lang='th'] .presentation-mode .security-media .screenshot-viewport { height
 .next-panel { background: #eee7f8; border-radius: 29px; padding: 32px 40px; }.next-panel h2{font-size:33px;letter-spacing:-.025em}.next-list article{display:flex;gap:22px;padding:24px 0;border-bottom:1px solid #d1c5e3}.next-list article > span{font-size:22px;color:#8b68b2}.next-list h3{font-size:25px;margin-bottom:9px}.next-list p{font-size:22px;line-height:1.45;color:#65537e}.integration-note{display:flex;align-items:center;gap:15px;color:#695081;font-size:18px;line-height:1.4;margin-top:22px}.integration-note svg{flex-shrink:0}
 .closing-principle { display: flex; align-items: center; justify-content: space-between; margin-top: 33px; padding: 22px 13px; border-top: 1px solid var(--line); }.closing-principle > span{font-size:13px;letter-spacing:3px;color:#8b7e9b}.closing-principle > strong{font-size:27px;font-weight:650}
 .scene-ending { inset: 0; }.ending-layout{position:relative;height:100%}.ending-art{position:absolute;right:-40px;bottom:-90px;width:1000px;height:1020px;opacity:.88;mask-image:linear-gradient(90deg,transparent,black 25%)}.ending-art img{width:100%;height:100%;object-fit:cover;object-position:center 60%}.ending-content{position:absolute;top:234px;left:140px;z-index:2}.ending-content .wordmark-small > span{font-size:91px}.ending-content .wordmark-small .aegis-original-mark{width:205px;height:205px;left:-70px}.ending-content .wordmark-small > span > i{width:52px;height:22px;top:50px;left:10px}.ending-content h1{font-size:142px;letter-spacing:-.05em;font-weight:700;line-height:1;margin-top:45px}.ending-subtitle{font-size:39px;line-height:1.3;color:#55466d;margin-top:25px}.ending-actions{display:flex;align-items:center;gap:28px;margin-top:37px}.ending-actions .primary-button{font-size:23px;padding:16px 21px 16px 29px;gap:18px}.text-button{display:inline-flex;gap:10px;align-items:center;border:0;background:transparent;font-size:18px;color:#5d4d78;padding:14px 0}.text-button:hover{color:#6c31d9}.ending-members{display:flex;gap:24px;margin-top:39px;font-family:'Noto Sans Thai',sans-serif;font-size:18px;color:#635471}.ending-university{display:block;margin-top:17px;font-size:17px;color:#847395}.ending-star{position:absolute;left:925px;top:240px;width:85px;height:85px}.ending-prompt{position:absolute;right:108px;bottom:150px;border-radius:40px;background:#fffefaeb;padding:17px 28px;font-size:23px;color:#51416a}
+
+/* Final editorial frame: original marks and monument artwork stay separate from editable copy. */
+.scene-thank-you { inset: 0; }
+.thank-you-layout { position: relative; height: 100%; isolation: isolate; }
+.thank-you-art { position: absolute; top: 125px; right: -18px; width: 1100px; height: 855px; z-index: -1; overflow: hidden; mask-image: linear-gradient(90deg, transparent 0%, #000 24%); transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px)); }
+.thank-you-art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 54%; }
+.thank-you-art::after { content: ''; position: absolute; inset: 0 0 auto; height: 105px; background: linear-gradient(180deg, var(--cream), transparent); pointer-events: none; }
+.thank-you-content { position: absolute; top: 172px; left: 115px; width: 965px; z-index: 2; }
+.thank-you-heading { font-size: 149px; line-height: 1.02; font-weight: 800; letter-spacing: -.04em; white-space: nowrap; }
+.thank-you-word { display: inline-block; }
+.thank-you-attention { margin: 12px 0 0 20px; color: #565778; font-size: 22px; font-weight: 600; text-transform: uppercase; letter-spacing: .31em; }
+.thank-you-project { display: flex; align-items: center; gap: 29px; margin-top: 29px; }
+.thank-you-project .wordmark-small { flex: 0 0 auto; }
+.thank-you-project .wordmark-small > span { font-size: 68px; letter-spacing: -.06em; }
+.thank-you-project .wordmark-small > span > i { width: 38px; height: 17px; top: 39px; left: 8px; }
+.thank-you-project .aegis-original-mark { width: 153px; height: 153px; left: -36px; top: -50px; opacity: .35; }
+.thank-you-project-rule { width: 1px; height: 62px; background: #9d95b7; flex: 0 0 auto; }
+.thank-you-project > p { max-width: 600px; color: var(--ink); font-size: 23px; font-weight: 600; line-height: 1.28; }
+.thank-you-university { margin-top: 8px; color: #68658b; font-size: 18px; }
+.thank-you-students { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 29px; }
+.thank-you-student { min-height: 176px; padding: 20px 22px 18px; border-radius: 22px; background: #f2ebfbeb; box-shadow: 0 18px 40px -24px #4e267e70; backdrop-filter: blur(8px); display: flex; flex-direction: column; }
+.thank-you-student-2 { background: #eaf3fceb; }
+.thank-you-student-3 { background: #fff0e7e8; }
+.thank-you-student-id { color: var(--purple-deep); font-size: 17px; font-weight: 800; letter-spacing: .01em; }
+.thank-you-student-2 .thank-you-student-id { color: #3157cc; }
+.thank-you-student-3 .thank-you-student-id { color: #a9432d; }
+.thank-you-student h2 { margin-top: 4px; color: var(--ink); font-size: 23px; font-weight: 750; line-height: 1.24; }
+.thank-you-student p { margin-top: 5px; color: #42435e; font-size: 17px; line-height: 1.35; }
+.thank-you-student-rule { display: block; width: 54px; height: 3px; margin-top: auto; background: var(--purple); }
+.thank-you-student-2 .thank-you-student-rule { background: var(--blue); }
+.thank-you-student-3 .thank-you-student-rule { background: var(--coral); }
+.thank-you-closing { display: flex; align-items: flex-start; gap: 55px; margin: 29px 0 0 16px; }
+.thank-you-questions strong { display: block; color: var(--ink); font-size: 29px; line-height: 1.25; }
+.thank-you-questions .short-rule { display: block; width: 70px; height: 3px; margin-top: 15px; }
+.thank-you-closing > p { color: #494b79; font-size: 20px; line-height: 1.34; font-style: italic; }
+.thank-you-star { position: absolute; left: 1010px; top: 346px; width: 64px; height: 64px; }
+.scene-thank-you .thank-you-student { transition: transform .25s ease, box-shadow .25s ease; }
+.scene-thank-you .thank-you-student:hover { transform: translateY(-5px); box-shadow: 0 25px 45px -24px #4e267e86; }
+html[lang='th'] .thank-you-heading { font-family: 'Noto Sans Thai', sans-serif; font-size: 146px; font-weight: 700; letter-spacing: -.035em; }
+html[lang='th'] .thank-you-attention { letter-spacing: .08em; margin-left: 7px; }
+html[lang='th'] .thank-you-student h2 { font-size: 24px; }
+html[lang='th'] .thank-you-closing > p { font-style: normal; }
+[data-motion='off'] .thank-you-art { transform: none; }
+[data-motion='off'] .scene-thank-you .thank-you-student { transition: none; }
+[data-motion='off'] .scene-thank-you .thank-you-student:hover { transform: none; box-shadow: 0 18px 40px -24px #4e267e70; }
 
 /* Recording-safe spacing and readable technical labels. */
 .scene-counter > span, .clip-cases small, .ending-university, .closing-principle > span { color: #665673; }
@@ -720,6 +767,38 @@ html[lang='th'] .presentation-mode .architecture-features p { line-height: 1.4; 
   .video-focus-header button { font-size: 13px; }
 }
 @media(prefers-reduced-motion:reduce) { .hardware-photo-button { transition: none; } }
+.reading-mode .thank-you-layout { display: flex; flex-direction: column; height: auto; min-height: 0; }
+.reading-mode .thank-you-content { position: relative; inset: auto; width: 100%; padding: 35px 0 0; }
+.reading-mode .thank-you-heading { font-size: clamp(72px, 11vw, 125px); }
+html[lang='th'] .reading-mode .thank-you-heading { font-size: clamp(68px, 11vw, 118px); }
+.reading-mode .thank-you-attention { font-size: clamp(14px, 2vw, 19px); letter-spacing: .16em; margin-left: 3px; }
+.reading-mode .thank-you-project { margin-top: 35px; }
+.reading-mode .thank-you-students { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.reading-mode .thank-you-student { padding: 18px; min-height: 165px; }
+.reading-mode .thank-you-student h2 { font-size: 19px; }
+.reading-mode .thank-you-student p { font-size: 15px; }
+.reading-mode .thank-you-art { position: relative; inset: auto; order: 2; align-self: center; width: min(100%, 820px); height: 490px; margin-top: -35px; mask-image: linear-gradient(0deg, #000 75%, transparent); transform: none; }
+.reading-mode .thank-you-star { display: none; }
+@media (max-width: 650px) {
+  .reading-mode .thank-you-content { padding-top: 14px; }
+  .reading-mode .thank-you-heading, html[lang='th'] .reading-mode .thank-you-heading { font-size: clamp(55px, 13vw, 86px); white-space: normal; }
+  .reading-mode .thank-you-attention { font-size: 13px; line-height: 1.5; letter-spacing: .08em; }
+  .reading-mode .thank-you-project { gap: 14px; margin-top: 30px; }
+  .reading-mode .thank-you-project .wordmark-small > span { font-size: 39px; }
+  .reading-mode .thank-you-project .wordmark-small > span > i { width: 22px; height: 10px; top: 23px; left: 4px; }
+  .reading-mode .thank-you-project .aegis-original-mark { width: 95px; height: 95px; left: -24px; top: -32px; }
+  .reading-mode .thank-you-project-rule { height: 65px; }
+  .reading-mode .thank-you-project > p { font-size: 14px; line-height: 1.35; }
+  .reading-mode .thank-you-university { font-size: 14px; line-height: 1.45; margin-top: 13px; }
+  .reading-mode .thank-you-students { grid-template-columns: 1fr; gap: 12px; margin-top: 25px; }
+  .reading-mode .thank-you-student { min-height: 124px; padding: 14px 18px; }
+  .reading-mode .thank-you-student h2, html[lang='th'] .reading-mode .thank-you-student h2 { font-size: 20px; }
+  .reading-mode .thank-you-student p { font-size: 15px; }
+  .reading-mode .thank-you-closing { display: block; margin: 24px 0 0; }
+  .reading-mode .thank-you-questions strong { font-size: 23px; }
+  .reading-mode .thank-you-closing > p { font-size: 17px; margin-top: 18px; }
+  .reading-mode .thank-you-art { width: calc(100% + 70px); height: 350px; margin-top: -8px; }
+}
 @media print {
   @page { size: 20in 11.25in; margin: 0; }
   html, body, #root, .app, .presentation-fit, .presentation-stage { width: 1920px !important; height: 1080px !important; min-height: 0 !important; margin: 0 !important; overflow: hidden !important; }

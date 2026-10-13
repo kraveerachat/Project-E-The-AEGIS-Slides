@@ -1,6 +1,6 @@
 # Original AEGIS media requests - V3
 
-The 18-scene layout works with missing media. Keep each entry MISSING until an approved original file is ready. The hardware photographs and both original logos are already available. IDEA 3 is an assessment and has no independent application/video demonstration.
+The 19-scene layout works with missing media. Keep each entry MISSING until an approved original file is ready. The hardware photographs and both original logos are already available. IDEA 3 is an assessment and has no independent application/video demonstration.
 
 ## Insert media
 

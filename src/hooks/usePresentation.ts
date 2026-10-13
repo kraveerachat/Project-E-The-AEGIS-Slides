@@ -10,7 +10,9 @@ export function useReducedMotion() {
 export function useStageScale() {
   const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })
   useEffect(() => { const update = () => setSize({ width: window.innerWidth, height: window.innerHeight }); window.addEventListener('resize', update); return () => window.removeEventListener('resize', update) }, [])
-  return { scale: Math.min(size.width / 1920, size.height / 1080), narrow: size.width < 900 && size.height > size.width }
+  const scale = Math.min(size.width / 1920, size.height / 1080)
+  // A scaled 61px navigation button falls below a 44px touch target here.
+  return { scale, narrow: (size.width < 900 && size.height > size.width) || scale < .72 }
 }
 function initialScene() { const id = window.location.hash.replace(/^#\/?/, ''); const index = scenes.findIndex(scene => scene.id === (sceneAliases[id] ?? id)); return index < 0 ? 0 : index }
 
@@ -58,6 +60,14 @@ export function usePresentation(reduced: boolean, reading: boolean) {
       }
       if (scenes[index].id.endsWith('-demo')) {
         timeline.current.fromTo('.demo-step', { y: 12, opacity: .35 }, { y: 0, opacity: 1, duration: .4, stagger: { amount: .2 }, ease: 'power3.out' }, .18)
+      }
+      if (scenes[index].id === 'thank-you') {
+        timeline.current
+          .fromTo('.thank-you-art img', { scale: 1.055, opacity: .65 }, { scale: 1, opacity: 1, duration: 1.1, ease: 'power2.out' }, 0)
+          .fromTo('.thank-you-word', { y: 54, opacity: 0, filter: 'blur(7px)' }, { y: 0, opacity: 1, filter: 'blur(0px)', duration: .78, stagger: .13, ease: 'power3.out' }, .11)
+          .fromTo('.thank-you-attention, .thank-you-project, .thank-you-university', { y: 19, opacity: 0 }, { y: 0, opacity: 1, duration: .55, stagger: .09, ease: 'power3.out' }, .39)
+          .fromTo('.thank-you-student', { y: 27, opacity: 0 }, { y: 0, opacity: 1, duration: .61, stagger: .11, ease: 'power3.out' }, .59)
+          .fromTo('.thank-you-closing', { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'power3.out' }, .95)
       }
     }, element)
     return () => { context.revert(); timeline.current?.kill() }

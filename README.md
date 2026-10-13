@@ -1,6 +1,6 @@
 # AEGIS Final Presentation
 
-A bilingual, recording-ready React / TypeScript / Vite presentation of **AEGIS: Local Data Center, Monitoring, Network Infrastructure and Security Assessment**. The 18 scenes follow the owner's V3 brief and the 180-page final report. No production backend or private network is needed.
+A bilingual, recording-ready React / TypeScript / Vite presentation of **AEGIS: Local Data Center, Monitoring, Network Infrastructure and Security Assessment**. The 19 scenes follow the owner's V3 brief and approved closing-scene update, using the 180-page final report. No production backend or private network is needed.
 
 ## Run and verify
 
@@ -16,11 +16,11 @@ The default preview is http://127.0.0.1:5173. An alternate port is supported wit
 
 ## Present
 
-- Arrow Left/Right or Page Up/Down: previous/next scene. F: fullscreen. Escape: close an inspection or exit fullscreen.
+- Arrow Left/Right or Page Up/Down: previous/next scene; Right/Page Down on the final scene returns to the cover. F: fullscreen. Escape: close an inspection or exit fullscreen.
 - The chapter rail links Home, Overview and the three IDEA chapters. The footer contains scene selection, references/speaker notes, TH/EN, reading mode and motion controls.
 - Thai is the default. Language selection persists when browser storage is available and preserves the current scene and interactive selections.
-- The 1920×1080 canvas scales to the screen. Portrait phones use a reflowing reading layout. Reduced motion follows the system preference or the footer control.
-- The planned budget is **14:35**, including two **90-second** recordings and a 20-second hardware scene. The remaining buffer to 15 minutes is 25 seconds. Timing is a narration plan, not a recording guarantee.
+- The 1920×1080 canvas scales to the screen. Small viewports use a reflowing reading layout when scaling would make navigation too small. Reduced motion follows the system preference or the footer control.
+- The planned budget is **14:50**, including two **90-second** recordings, a 20-second hardware scene and a 15-second closing scene. The remaining buffer to 15 minutes is 10 seconds. Timing is a narration plan, not a recording guarantee.
 - Both hardware photos open in a keyboard-accessible original-image inspection. Actual video playback expands to Presentation Video Mode and returns to the scene on completion or exit. It never advances the scene automatically.
 
 ## Content and media
@@ -38,6 +38,7 @@ The central asset manifest is `src/data/assets.ts`. See [ASSET_REQUESTS.md](ASSE
 - Native photo/evidence dialogs isolate keyboard navigation. Video focus temporarily makes background controls inert and restores focus on exit.
 - Legacy scene links resolve to their revised scene equivalents.
 - `node scripts/capture-v3.mjs http://127.0.0.1:5193` captures both languages and writes the required review screenshots to `docs/screenshots/v3/`. Other review captures stay in the ignored `.impeccable/review/v3/` folder.
+- `npm run build && npm run capture:thank-you` captures Scene 19 in TH and EN at 1920×1080 from the production build, saving the images to `docs/screenshots/scene-19/`.
 - `tests/fixtures/playback.mp4` is a neutral test-only clip for browser decoding, never a public AEGIS recording.
 
 See [CONTENT_SOURCES.md](docs/CONTENT_SOURCES.md), [QA_REPORT.md](docs/QA_REPORT.md) and [ASSET_PROVENANCE.md](docs/ASSET_PROVENANCE.md).
