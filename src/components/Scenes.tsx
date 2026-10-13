@@ -145,6 +145,39 @@ function Summary() {
     ['Complete measurements','Recognition evaluation, live/alert latency and Archive API/role coverage.'],
   ].map(([title,text],i) => <article key={title}><span>0{i+1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div><p className="integration-note"><Icon name="help" size={27} />Single host and primary path. No installed RAID 1 or network-path redundancy.</p></section></div><div className="closing-principle reveal"><span>Thank you · Questions & discussion</span><strong>Build the boundary. Test the behavior. Keep the evidence.</strong></div></>
 }
+function ThankYou() {
+  const { language } = useI18n()
+  return <div className="thank-you-layout">
+    <div className="thank-you-art" aria-hidden="true"><img src="/assets/generated/monument-arcs.png" alt="" /></div>
+    <div className="thank-you-content">
+      <div className="thank-you-intro">
+        <h1 className="thank-you-heading" aria-label={language === 'th' ? 'ขอบคุณ' : 'Thank You!'}>
+          {language === 'th' ? <><span className="thank-you-word">ขอบ</span><span className="thank-you-word gradient-text">คุณ</span></> : <><span className="thank-you-word">Thank</span> <span className="thank-you-word gradient-text">You!</span></>}
+        </h1>
+        <p className="thank-you-attention">For your time and attention</p>
+      </div>
+      <div className="thank-you-project">
+        <Wordmark small />
+        <span className="thank-you-project-rule" aria-hidden="true" />
+        <p>{project.title}</p>
+      </div>
+      <p className="thank-you-university">A Final Project by Suranaree University of Technology</p>
+      <div className="thank-you-students" aria-label={language === 'th' ? 'ผู้จัดทำโครงงาน' : 'Project students'}>
+        {project.members.map((member, index) => <article className={`thank-you-student thank-you-student-${index + 1}`} key={member.id}>
+          <span className="thank-you-student-id">{member.id}</span>
+          <h2 lang={language}>{member[language]}</h2>
+          <p lang={language === 'th' ? 'en' : 'th'}>{language === 'th' ? member.en : member.th}</p>
+          <span className="thank-you-student-rule" aria-hidden="true" />
+        </article>)}
+      </div>
+      <div className="thank-you-closing">
+        <div className="thank-you-questions"><strong>Questions &amp; Discussion</strong><span className="short-rule" aria-hidden="true" /></div>
+        <p>Technology serves people.<br />Security strengthens our community.</p>
+      </div>
+    </div>
+    <Star className="thank-you-star" />
+  </div>
+}
 export function SceneContent({id,goTo}:SceneProps) {
   switch(id) {
     case 'cover': return <Cover goTo={goTo} />
@@ -165,6 +198,7 @@ export function SceneContent({id,goTo}:SceneProps) {
     case 'security-methodology': return <SecurityMethodology />
     case 'security-findings': return <SecurityFindings />
     case 'summary': return <Summary />
+    case 'thank-you': return <ThankYou />
     default: return <div><h1>Scene unavailable</h1><button onClick={() => goTo('cover')}>Return to cover</button></div>
   }
 }

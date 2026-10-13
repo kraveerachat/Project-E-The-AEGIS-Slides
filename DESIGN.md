@@ -135,11 +135,11 @@ Reading mode gives standard scene headings clamp(34px, 4.7vw, 62px), with furthe
 
 **The Recording Frame Rule.** Compose presentation mode at 1920 × 1080 and scale the complete stage uniformly; use reading mode for reflow.
 
-The stage is centered in the viewport using the smaller width/1920 or height/1080 ratio. The masthead sits 30px from the top and 68px from either side; ordinary scenes use insets of 177px 84px 126px. Cover and closing scenes fill the stage. The footer sits 25px from the bottom with 84px side insets. There are 17 scenes and no automatic advance.
+The stage is centered in the viewport using the smaller width/1920 or height/1080 ratio. The masthead sits 30px from the top and 68px from either side; ordinary scenes use insets of 177px 84px 126px. Cover and closing scenes fill the stage. The footer sits 25px from the bottom with 84px side insets. There are 19 scenes and no automatic advance.
 
 Layouts vary with the content: asymmetric two-column stories, three overview chapter cards, feature grids, diagram plus inspector, and screenshot plus recording stages. Spacing custom properties expose the 8–80px scale recorded above, while current layouts also use direct composition-specific gaps and padding; the implementation does not exclusively consume that scale.
 
-Portrait viewports narrower than 900px default to reading mode. The user can select either mode. Reading mode places header, scene and footer in document flow, removes fixed stage dimensions, and uses 35px side padding. The CSS breakpoint is max-width: 899px; narrow reading layouts stack content and expose textual diagram nodes and relationships. Native dialogs use viewport-relative maximum dimensions. Print styling exposes the current scene, not an automatic 17-page export.
+Portrait viewports narrower than 900px and viewports where the 16:9 stage would shrink below 72% default to reading mode. The user can select either mode. Reading mode places header, scene and footer in document flow, removes fixed stage dimensions, and uses 35px side padding. The CSS breakpoint is max-width: 899px; narrow reading layouts stack content and expose textual diagram nodes and relationships. Native dialogs use viewport-relative maximum dimensions. Print styling exposes the current scene, not an automatic 19-page export.
 
 ## Elevation & Depth
 

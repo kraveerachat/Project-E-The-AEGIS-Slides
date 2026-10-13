@@ -1,6 +1,6 @@
 # V3 content sources and evidence boundaries
 
-The primary authority is **The_AEGIS_Project-Final.pdf**, 180 pages, read locally from the owner-supplied file. Its cover establishes **AEGIS: Local Data Center, Monitoring, Network Infrastructure and Security Assessment**. The private source report is not redistributed. The owner V3 brief defines the 18-scene order and 14:35 plan. The existing Thai PDF and committed renders establish the incumbent visual layout.
+The primary authority is **The_AEGIS_Project-Final.pdf**, 180 pages, read locally from the owner-supplied file. Its cover establishes **AEGIS: Local Data Center, Monitoring, Network Infrastructure and Security Assessment**. The private source report is not redistributed. The owner V3 brief defines the first 18 scenes; the approved closing-scene update adds scene 19 and brings the plan to 14:50. The existing Thai PDF and committed renders establish the incumbent visual layout.
 
 The separately mentioned PROMPT v2 and grading images were not found as independent files in this turn. The explicit V3 plan and final report §4.9 supplied the content/rubric mapping; an exact rubric-image comparison remains an owner review item.
 
@@ -26,6 +26,7 @@ The separately mentioned PROMPT v2 and grading images were not found as independ
 | 16 | Security architecture / method | 0:50 | §3.10.3–3.10.6; §4.6; §4.9.6–4.9.14 |
 | 17 | Security results / findings | 1:10 | §4.6.2–4.6.10; §4.6.15–4.6.17; §5.3.4 |
 | 18 | Conclusion / limits / future | 0:35 | §5.1–5.4; §4.9 |
+| 19 | Thank You / Q&A | 0:15 | Final report cover, p.1; owner-verified student names and IDs |
 
 ## Numerical and interpretive checks
 

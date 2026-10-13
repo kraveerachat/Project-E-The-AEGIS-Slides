@@ -12,10 +12,10 @@ const { diagrams } = await loadData('src/data/diagrams.ts')
 const { thaiPhrases: uiPhrases } = await loadData('src/i18n/th.ts')
 const thaiPhrases = {...uiPhrases,...contentPhrases}
 const errors = []
-const expectedSceneIds = ['cover','background','overview','network','hardware-setup','server-setup','access','network-features','drive-architecture','drive-demo','monitor-architecture','monitor-demo','network-results','performance','security-scope','security-methodology','security-findings','summary']
+const expectedSceneIds = ['cover','background','overview','network','hardware-setup','server-setup','access','network-features','drive-architecture','drive-demo','monitor-architecture','monitor-demo','network-results','performance','security-scope','security-methodology','security-findings','summary','thank-you']
 if (JSON.stringify(scenes.map(s=>s.id)) !== JSON.stringify(expectedSceneIds)) errors.push('Scene order differs from the approved V3 structure')
 if (new Set(scenes.map(s => s.id)).size !== scenes.length) errors.push('Duplicate scene IDs')
-if (totalSeconds !== 875) errors.push(`Expected 14:35 speaking budget, got ${totalSeconds}s`)
+if (totalSeconds !== 890) errors.push(`Expected 14:50 speaking budget, got ${totalSeconds}s`)
 for (const id of ['drive-demo','monitor-demo']) if (scenes.find(s=>s.id===id)?.seconds !== 90) errors.push(`${id}: expected 90-second demo slot`)
 if (totalSeconds > 900) errors.push(`Speaking budget exceeds 15 minutes: ${totalSeconds}s`)
 for (const scene of scenes) {

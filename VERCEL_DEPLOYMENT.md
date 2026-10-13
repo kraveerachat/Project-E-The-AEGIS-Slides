@@ -17,11 +17,11 @@ Public deployment requires separate owner authorization. This repository current
 ## Release checks
 
 - Run `npm ci`, `npm run check`, `npm run build`, and the browser suite.
-- Review all 18 scenes at 1920×1080 and fullscreen keyboard navigation in the recording browser.
+- Review all 19 scenes at 1920×1080 and fullscreen keyboard navigation in the recording browser.
 - Review uploaded screenshot/video content for credentials, internal addresses, active tokens and unauthorized personal details. The owner's supplied student IDs and bilingual names are intentionally visible on the cover; avoid adding unrelated personal details in future media.
 - Keep missing assets labeled until originals are available; obtain approval for public use of supplied branding and media.
 - Check video play/pause, captions, playback seek and return navigation after real recordings arrive.
-- Rehearse narration and media within the 14:35 plan / 15-minute limit, including both 90-second recordings.
+- Rehearse narration and media within the 14:50 plan / 15-minute limit, including both 90-second recordings and the 15-second closing scene.
 
 No availability, security-performance or successful deployment claims are implied by a passing frontend build. Host/device redundancy and assessment coverage remain subject to the final report's limits.
 

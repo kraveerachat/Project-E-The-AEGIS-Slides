@@ -9,6 +9,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "check": "tsc -b && node scripts/validate-content.mjs",
     "test": "playwright test",
+    "capture:thank-you": "node scripts/capture-thank-you.mjs",
     "test:ui": "playwright test --ui"
   },
   "dependencies": {

@@ -3,8 +3,8 @@ import { readFileSync } from 'node:fs'
 import { scenes, totalSeconds } from '../src/data/content'
 
 test('V3 order, timing, final identity and assessment classifications match the brief', async ({ page }) => {
-  expect(scenes).toHaveLength(18)
-  expect(totalSeconds).toBe(875)
+  expect(scenes).toHaveLength(19)
+  expect(totalSeconds).toBe(890)
   expect(scenes.findIndex(s=>s.id==='hardware-setup')).toBe(scenes.findIndex(s=>s.id==='network')+1)
   expect(scenes.filter(s=>s.id.endsWith('-demo')).map(s=>s.seconds)).toEqual([90,90])
   await page.addInitScript(() => localStorage.setItem('aegis-presentation-language','en'))
